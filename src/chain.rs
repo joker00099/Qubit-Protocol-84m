@@ -5,6 +5,8 @@ use std::collections::{HashMap, HashSet};
 pub const TARGET_TIME: u64 = 3600; // 1 Hour Time-Lock
 pub const HALVING_INTERVAL: u64 = 2_100_000;
 pub const INITIAL_REWARD: u64 = 50_000_000_000; // 500 QBT (8 decimals)
+pub const MAX_SUPPLY: u64 = 84_000_000_000_000_000; // 84M QBT in smallest units
+pub const DECIMALS: u32 = 8;
 
 /// THE SOVEREIGN ANCHOR: Hardcoded from your 2026-01-11 solo mine.
 pub const GENESIS_ANCHOR: &str = "2dfba633817046c7f559ed4b93076048435f7e1a90f14eb8035c04b9ebae2537";
@@ -101,5 +103,29 @@ impl Timechain {
                 processed_txs.insert(tx_hash);
             }
         }
+    }
+
+    /// Calculate total coins mined so far
+    pub fn total_mined(&self) -> u64 {
+        self.balances.values().sum()
+    }
+
+    /// Calculate total coins remaining
+    pub fn total_remaining(&self) -> u64 {
+        MAX_SUPPLY.saturating_sub(self.total_mined())
+    }
+
+    /// Format coins to human-readable QBT (with 8 decimals)
+    pub fn format_qbt(amount: u64) -> String {
+        let qbt = amount as f64 / (10_u64.pow(DECIMALS) as f64);
+        format!("{:.8}", qbt).trim_end_matches('0').trim_end_matches('.').to_string()
+    }
+
+    /// Get supply info as a tuple (mined, remaining, percent_mined)
+    pub fn supply_info(&self) -> (u64, u64, f64) {
+        let mined = self.total_mined();
+        let remaining = self.total_remaining();
+        let percent = (mined as f64 / MAX_SUPPLY as f64) * 100.0;
+        (mined, remaining, percent)
     }
 }

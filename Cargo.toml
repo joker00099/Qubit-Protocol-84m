@@ -49,3 +49,7 @@ path = "src/main.rs"
 [[bin]]
 name = "qubit-wallet"
 path = "src/bin/qubit-wallet.rs"
+
+[[bin]]
+name = "qubit-supply"
+path = "src/bin/qubit-supply.rs"

@@ -224,9 +224,15 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                 // Using last_diff to calculate and show the difficulty trend
                 let trend = if tc.difficulty > last_diff { "UP ⬆️" } else if tc.difficulty < last_diff { "DOWN ⬇️" } else { "STABLE ↔️" };
 
+                // Supply info
+                let (mined, remaining_supply, percent) = tc.supply_info();
+                let mined_qbt = Timechain::format_qbt(mined);
+                let remaining_qbt = Timechain::format_qbt(remaining_supply);
+
                 println!("\n--- 🏛️  QUBIT STATUS ---");
                 println!("⛓️  Height: {} | Diff: {} | Trend: {}", tc.blocks.len(), tc.difficulty, trend);
                 println!("⏳ Time-Lock: {:02}m remaining | 🤖 AI Shield: ACTIVE", remaining/60);
+                println!("💰 Mined: {} QBT | Remaining: {} QBT | {:.2}% of max supply", mined_qbt, remaining_qbt, percent);
                 println!("------------------------\n");
                 
                 // Sync last_diff for the next interval
