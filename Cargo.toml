@@ -4,6 +4,7 @@ version = "1.0.0"
 edition = "2021"
 description = "Governance-free decentralized Timechain with VDF+PoW Hybrid Consensus"
 publish = false # Ensures identity remains private and code isn't leaked to registries
+default-run = "qubit"
 
 [dependencies]
 # Networking (Hardened P2P)
