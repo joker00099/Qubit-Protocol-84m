@@ -176,6 +176,38 @@ cargo run --release -- --relay-only
 cargo run --release -- --config custom.toml
 ```
 
+### Network Monitoring
+The node displays real-time network status every 10 seconds:
+
+```bash
+--- 🏛️  QUBIT STATUS ---
+⛓️  Height: 42 | Diff: 1000 | Trend: UP ⬆️
+⏳ Time-Lock: 45m remaining | 🤖 AI Shield: ACTIVE
+💰 Mined: 1,050.00 QBT | Remaining: 83,949,950.00 QBT | 1.25% of max supply
+🌐 Connected Peers: 3 | Network: ACTIVE
+------------------------
+```
+
+**Network Indicators:**
+- **Connected Peers**: Number of active P2P connections
+- **Peer Discovery**: Logs show when peers connect/disconnect
+- **Block Verification**: Each block is verified by connected peers
+- **Network Health**: Minimum 3 peers recommended for robust consensus
+
+**Peer Events:**
+```
+🔗 Peer connected: 12D3KooWAbc... | Total peers: 3
+🔌 Peer disconnected: 12D3KooWAbc... | Total peers: 2
+🔎 mDNS discovered peer: 12D3KooWXyz...
+👋 Identified peer: 12D3KooWDef... (qubit/1.0.0)
+```
+
+**Network Status Script:**
+```bash
+# Check network status
+./network-status.sh
+```
+
 ### Wallet Operations
 ```bash
 # Export wallet address

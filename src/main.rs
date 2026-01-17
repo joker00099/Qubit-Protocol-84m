@@ -87,6 +87,9 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     let mut dashboard_timer = time::interval(Duration::from_secs(10));
     let mut throttle_reset = time::interval(Duration::from_secs(60));
     let mut tx_broadcast_timer = time::interval(Duration::from_secs(30));
+    
+    // Track connected peers for network monitoring
+    let mut connected_peers: std::collections::HashSet<libp2p::PeerId> = std::collections::HashSet::new();
 
     loop {
         tokio::select! {
@@ -171,6 +174,14 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                     if let Ok(encoded) = bincode::serialize(&tc.blocks) {
                         let _ = swarm.behaviour_mut().gossipsub.publish(chain_topic.clone(), encoded);
                     }
+                },
+                SwarmEvent::ConnectionEstablished { peer_id, .. } => {
+                    connected_peers.insert(peer_id);
+                    println!("🔗 Peer connected: {} | Total peers: {}", peer_id, connected_peers.len());
+                },
+                SwarmEvent::ConnectionClosed { peer_id, .. } => {
+                    connected_peers.remove(&peer_id);
+                    println!("🔌 Peer disconnected: {} | Total peers: {}", peer_id, connected_peers.len());
                 },
 
                 // When mDNS discovers peers on the LAN, proactively request their chain
@@ -272,6 +283,7 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                 println!("⛓️  Height: {} | Diff: {} | Trend: {}", tc.blocks.len(), tc.difficulty, trend);
                 println!("⏳ Time-Lock: {:02}m remaining | 🤖 AI Shield: ACTIVE", remaining/60);
                 println!("💰 Mined: {} QBT | Remaining: {} QBT | {:.2}% of max supply", mined_qbt, remaining_qbt, percent);
+                println!("🌐 Connected Peers: {} | Network: ACTIVE", connected_peers.len());
                 println!("------------------------\n");
                 
                 // Sync last_diff for the next interval
