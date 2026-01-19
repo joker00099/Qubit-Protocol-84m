@@ -443,13 +443,13 @@ node.validate_block(&block)?;
 
 ### Active Vulnerabilities
 
-#### 1. tracing-subscriber (RUSTSEC-2024-0370)
+#### 1. tracing-subscriber (RUSTSEC-2025-0055)
 - **Severity:** Medium
 - **Affected:** Transitive dependency via ark-relations
-- **Description:** Potential panic when using `fmt::Debug` with malformed inputs in tracing-subscriber
-- **Status:** Upstream issue opened in arkworks/ark-relations repository
-- **Mitigation:** No known exploits in Qubit Protocol's current usage patterns
-- **Tracking:** Monitoring for upstream fix
+- **Description:** Logging user input may result in poisoning logs with ANSI escape sequences
+- **Status:** Upstream issue in arkworks/ark-relations. Dependency patch attempted but incompatible.
+- **Mitigation:** Qubit Protocol does not log untrusted user input in exploitable patterns. Risk: Low
+- **Tracking:** Monitoring arkworks ecosystem for updates
 
 ### Resolved Vulnerabilities
 - **ring (RUSTSEC-2024-0336):** Fixed by upgrading libp2p from 0.53 to 0.56

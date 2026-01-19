@@ -80,10 +80,11 @@ The following are **out of scope**:
 #### Active Vulnerabilities:
 1. **tracing-subscriber** (transitive via ark-relations)
    - **Severity:** Medium
-   - **Advisory:** RUSTSEC-2024-0370
-   - **Description:** Potential panic in `tracing-subscriber` when using `fmt::Debug` with malformed inputs.
-   - **Status:** Upstream issue opened in arkworks/ark-relations. Monitoring for fix.
-   - **Mitigation:** No known exploits in Qubit Protocol's usage.
+   - **Advisory:** RUSTSEC-2025-0055
+   - **Description:** Logging user input may result in poisoning logs with ANSI escape sequences
+   - **Status:** Upstream issue in arkworks/ark-relations. Patch attempted but blocked by dependency constraints.
+   - **Mitigation:** Qubit Protocol does not log untrusted user input in a way that would allow ANSI escape sequence injection. Risk assessed as low for current usage patterns.
+   - **Tracking:** Monitoring for upstream fix in arkworks ecosystem
 
 #### Resolved Vulnerabilities:
 - **ring** (RUSTSEC-2024-0336): Resolved by updating libp2p to 0.56.
