@@ -69,6 +69,9 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     println!("🛡️  STATUS: AI-NEURAL PROTECTION ACTIVE");
     println!("--------------------------------------------------");
 
+    // --- Network Diagnostics: Check bootstrap connectivity on startup ---
+    network::check_bootstrap_connectivity();
+
     // 1. IDENTITY & STATE INITIALIZATION
     let wallet = Wallet::load_or_create();
     println!("💳 Wallet Address: {:?}", hex::encode(wallet.address));
@@ -294,7 +297,7 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                 },
 
                 // When identify events occur (new peers), ask them for their chain
-                SwarmEvent::Behaviour(network::TimechainBehaviourEvent::Identify(libp2p::identify::Event::Received { peer_id, info })) => {
+                SwarmEvent::Behaviour(network::TimechainBehaviourEvent::Identify(libp2p::identify::Event::Received { peer_id, info, .. })) => {
                     println!("👋 Identified peer: {} ({:?})", peer_id, info.agent_version);
                     let _ = swarm.behaviour_mut().gossipsub.publish(req_topic.clone(), b"REQ_CHAIN".to_vec());
                     // Also send a direct request-response asking for missing blocks
@@ -472,10 +475,10 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                             println!("⚠️  Mining failed, reducing difficulty to {}", tc.difficulty);
                         } else {
                             println!("⚠️  Mining failed at minimum difficulty. Check system performance.");
-                        }
+                      }
                     }
                 }
-            }
+            },
         }
     }
 }

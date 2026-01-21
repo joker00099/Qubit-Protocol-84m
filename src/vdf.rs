@@ -15,7 +15,6 @@ pub fn benchmark_wesolowski(t: u32, bits: u32) {
     println!("Wesolowski VDF: t={} bits={} elapsed={:?}", t, bits, duration);
 }
 use rug::Integer;
-use rug::ops::Pow;
 
 /// Wesolowski VDF Setup: Securely generates RSA modulus N
 /// For production, uses cryptographically secure random primes.

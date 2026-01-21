@@ -1,4 +1,5 @@
 use std::collections::HashSet;
+use std::net::TcpStream;
 
 /// External validator registry
 #[derive(Default)]
@@ -172,4 +173,21 @@ pub async fn init_network_with_bootstrap(bootstrap_peers: Vec<String>) -> Result
         log::warn!("No valid bootstrap peers added. Node will rely on mDNS/local discovery.");
     }
     Ok(swarm)
+}
+
+/// Utility: Check connectivity to bootstrap nodes
+pub fn check_bootstrap_connectivity() {
+    let nodes = [
+        ("34.145.123.45", 6000),
+        ("35.246.89.12", 6000),
+        ("13.237.156.78", 6000),
+        ("52.67.234.89", 6000),
+    ];
+    for (ip, port) in nodes.iter() {
+        let addr = format!("{}:{}", ip, port);
+        match TcpStream::connect(&addr) {
+            Ok(_) => println!("✅ Connected to bootstrap node: {}", addr),
+            Err(e) => println!("❌ Could not connect to {}: {}", addr, e),
+        }
+    }
 }
