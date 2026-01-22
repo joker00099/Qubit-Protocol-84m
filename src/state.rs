@@ -56,6 +56,15 @@ impl State {
         self.balances.insert(addr, bal + amount);
     }
 
+    pub fn debit(&mut self, addr: Address, amount: u64) -> Result<(), &'static str> {
+        let bal = self.balance(&addr);
+        if bal < amount {
+            return Err("Insufficient balance for debit");
+        }
+        self.balances.insert(addr, bal - amount);
+        Ok(())
+    }
+
     pub fn apply_tx(&mut self, tx: &Transaction) -> Result<(), &'static str> {
         let sender_bal = self.balance(&tx.from);
         let sender_nonce = self.nonce(&tx.from);
