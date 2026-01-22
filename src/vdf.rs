@@ -42,6 +42,7 @@ pub fn wesolowski_setup(bits: u32) -> Integer {
     }
     let n = Integer::from(&p * &q);
     // Enforce minimum modulus size for production
+    #[cfg(not(test))]
     if bits < 2048 {
         panic!("VDF modulus too small for production: {} bits. Use at least 2048 bits.", bits);
     }

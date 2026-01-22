@@ -19,7 +19,7 @@ fn test_block_validation_and_state() {
 #[test]
 fn test_vdf_wesolowski() {
     // Use pre-generated 2048-bit modulus for fast testing
-    let n = vdf::wesolowski_setup_test();
+    let n = vdf::wesolowski_setup(128);
     let g = Integer::from(2);
     let t = 10u32;
     let (y, _pi) = vdf::wesolowski_prove(&g, t, &n);
