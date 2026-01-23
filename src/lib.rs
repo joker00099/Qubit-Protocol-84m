@@ -23,7 +23,7 @@ pub mod time;
 pub mod storage;
 pub mod network;
 pub mod neural_guardian; // NEW: AI-powered security with federated learning
-pub use main_helper::Wallet;
+pub use wallet::Wallet;
 pub use block::Block;
 
 // Re-export production types

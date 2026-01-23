@@ -5,7 +5,7 @@ mod stress_tests {
     use axiom_core::block::Block;
     use axiom_core::chain::Timechain;
     use axiom_core::genesis;
-    use axiom_core::main_helper::Wallet;
+    use axiom_core::wallet::Wallet;
     use std::time::Instant;
 
     #[test]
@@ -227,7 +227,7 @@ mod stress_tests {
         
         // Pre-mine several blocks
         let num_blocks = 10;
-        let mut blocks = Vec::new();
+        let mut blocks: Vec<Block> = Vec::new();
         
         println!("Pre-mining {} blocks...", num_blocks);
         

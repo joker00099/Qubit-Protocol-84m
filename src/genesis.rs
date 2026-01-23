@@ -1,7 +1,7 @@
 use crate::zk;
 
 use crate::block::Block;
-use crate::main_helper::Wallet;
+use crate::wallet::Wallet;
 use sha2::{Sha256, Digest};
 use std::sync::Once;
 

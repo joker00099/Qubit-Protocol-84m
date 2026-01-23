@@ -4,7 +4,7 @@ mod tests {
     use axiom_core::block::Block;
     use axiom_core::chain::Timechain;
     use axiom_core::genesis;
-    use axiom_core::main_helper::Wallet;
+    use axiom_core::wallet::Wallet;
 
     #[test]
     fn test_transaction_creation() {
