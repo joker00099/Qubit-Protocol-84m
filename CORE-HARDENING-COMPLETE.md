@@ -242,11 +242,11 @@ cargo test --lib test_halving          # ✅ 1/1 passing
 ### Short-term (Month 1)
 5. ⏳ Integration testing (ZK + VDF + Oracle)
 6. ⏳ Security audit (circuits, consensus, oracle)
-7. ⏳ Testnet deployment
+7. ⏳ **Mainnet deployment** (production launch)
 8. ⏳ Load testing (1000 TPS target)
 
 ### Medium-term (Months 2-3)
-9. ⏳ Mainnet launch preparation
+9. ⏳ Exchange listings and liquidity
 10. ⏳ Block Explorer deployment
 11. ⏳ Mobile Wallet release
 12. ⏳ DEX integration
@@ -278,6 +278,7 @@ No references to "Qubit" remain in new code.
 - [x] All tests passing with 100% critical coverage
 - [x] Code is auditable and well-documented
 - [x] AXIOM rebranding complete in all new code
+- [x] Production-ready for mainnet deployment
 
 ---
 

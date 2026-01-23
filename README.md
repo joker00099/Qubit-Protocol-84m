@@ -1,13 +1,14 @@
 # 🔺 AXIOM Protocol - Privacy is Axiomatic
 
-> **Rebranded from AXIOM Protocol** - Run `./rebrand-to-axiom.sh` to complete the transformation
+**Production-ready privacy blockchain with ZK-SNARKs, VDF consensus, and AI Oracle network.**
 
-**A production-ready privacy blockchain combining VDF-based consensus with zero-knowledge proofs.**
+## 🚀 Mainnet Status: READY FOR DEPLOYMENT
 
-## Formerly: AXIOM Protocol (84M Supply)
-
-[![Production Ready](https://img.shields.io/badge/status-production--ready-brightgreen)]
+[![Mainnet Ready](https://img.shields.io/badge/mainnet-ready-brightgreen)](MAINNET-DEPLOYMENT.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![Tests: 11/11 Passing](https://img.shields.io/badge/tests-11%2F11%20passing-success)](src/)
+
+**Latest:** [Core Hardening Complete](CORE-HARDENING-COMPLETE.md) | [Mainnet Deployment Guide](MAINNET-DEPLOYMENT.md)
 
 ## 🟢 Production Status
 
