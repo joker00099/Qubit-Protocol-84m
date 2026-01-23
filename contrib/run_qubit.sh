@@ -3,8 +3,8 @@ set -euo pipefail
 # Simple supervisor: restarts the node binary if it exits
 
 ROOT_DIR="$(cd "$(dirname "$0")/.." && pwd)"
-BIN1="$ROOT_DIR/target/release/qubit-core"
-BIN2="$ROOT_DIR/target/release/qubit"
+BIN1="$ROOT_DIR/target/release/axiom-core"
+BIN2="$ROOT_DIR/target/release/axiom"
 LOG="$ROOT_DIR/node.log"
 
 if [ -x "$BIN1" ]; then

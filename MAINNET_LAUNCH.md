@@ -1,4 +1,4 @@
-# Qubit Protocol Mainnet Launch Guide
+# AXIOM Protocol Mainnet Launch Guide
 
 ## Prerequisites
 - Ensure all nodes run the latest release from the main branch

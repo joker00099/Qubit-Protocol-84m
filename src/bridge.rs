@@ -8,7 +8,7 @@ pub struct BridgeLock {
     pub hash_lock: [u8; 32],
     /// The block height (slot) after which the funds are refunded
     pub timeout_slot: u64,
-    /// The amount of QBT to be swapped
+    /// The amount of AXM to be swapped
     pub amount: u64,
     /// The destination address on the external chain
     pub recipient_on_other_chain: String,

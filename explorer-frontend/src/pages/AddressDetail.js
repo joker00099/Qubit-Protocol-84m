@@ -24,7 +24,7 @@ function AddressDetail() {
     }
   };
 
-  const formatQBT = (satoshis) => {
+  const formatAXM = (satoshis) => {
     return (satoshis / 100000000).toFixed(8);
   };
 
@@ -50,19 +50,19 @@ function AddressDetail() {
           <div className="detail-label">Balance:</div>
           <div className="detail-value">
             <strong style={{ fontSize: '24px', color: '#667eea' }}>
-              {formatQBT(addressInfo.balance)} QBT
+              {formatAXM(addressInfo.balance)} AXM
             </strong>
           </div>
         </div>
 
         <div className="detail-row">
           <div className="detail-label">Total Received:</div>
-          <div className="detail-value">{formatQBT(addressInfo.total_received)} QBT</div>
+          <div className="detail-value">{formatAXM(addressInfo.total_received)} AXM</div>
         </div>
 
         <div className="detail-row">
           <div className="detail-label">Total Sent:</div>
-          <div className="detail-value">{formatQBT(addressInfo.total_sent)} QBT</div>
+          <div className="detail-value">{formatAXM(addressInfo.total_sent)} AXM</div>
         </div>
 
         <div className="detail-row">
@@ -106,7 +106,7 @@ function AddressDetail() {
                     <td className="hash-short">{shortenHash(tx.sender)}</td>
                     <td className="hash-short">{shortenHash(tx.recipient)}</td>
                     <td style={{ color: isIncoming ? '#2e7d32' : '#c62828' }}>
-                      {isIncoming ? '+' : '-'}{formatQBT(tx.amount)} QBT
+                      {isIncoming ? '+' : '-'}{formatAXM(tx.amount)} AXM
                     </td>
                     <td>
                       {formatDistanceToNow(new Date(tx.timestamp * 1000), { addSuffix: true })}

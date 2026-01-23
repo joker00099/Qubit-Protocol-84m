@@ -1,20 +1,20 @@
-# Qubit SDK for Python
+# Axiom SDK for Python
 
-Python SDK for interacting with the Qubit blockchain.
+Python SDK for interacting with the Axiom blockchain.
 
 ## Installation
 
 ```bash
-pip install qubit-sdk
+pip install axiom-sdk
 ```
 
 ## Quick Start
 
 ```python
-from qubit_sdk import QubitClient, Wallet, qbt_to_sats, sats_to_qbt
+from axiom_sdk import AxiomClient, Wallet, axm_to_sats, sats_to_axm
 
 # Initialize client
-client = QubitClient("http://localhost:8332")
+client = AxiomClient("http://localhost:8332")
 
 # Create wallet
 wallet = Wallet()  # Or load existing: Wallet(private_key="...")
@@ -22,11 +22,11 @@ print(f"Address: {wallet.address}")
 
 # Check balance
 balance = client.get_balance(wallet.address)
-print(f"Balance: {sats_to_qbt(balance)} QBT")
+print(f"Balance: {sats_to_axm(balance)} AXM")
 
 # Send transaction
 recipient = "recipient_address_here"
-amount = qbt_to_sats(1.5)  # Send 1.5 QBT
+amount = axm_to_sats(1.5)  # Send 1.5 AXM
 tx_hash = client.send(wallet, recipient, amount, use_zk=True)
 print(f"Transaction sent: {tx_hash}")
 
@@ -46,7 +46,7 @@ print(f"Chain height: {info['height']}")
 
 ## API Reference
 
-### QubitClient
+### AxiomClient
 
 - `get_balance(address)` - Get balance for an address
 - `get_nonce(address)` - Get nonce for an address

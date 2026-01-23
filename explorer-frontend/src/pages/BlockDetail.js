@@ -24,7 +24,7 @@ function BlockDetail() {
     }
   };
 
-  const formatQBT = (satoshis) => {
+  const formatAXM = (satoshis) => {
     return (satoshis / 100000000).toFixed(8);
   };
 
@@ -111,7 +111,7 @@ function BlockDetail() {
 
         <div className="detail-row">
           <div className="detail-label">Block Reward:</div>
-          <div className="detail-value">{formatQBT(block.reward)} QBT</div>
+          <div className="detail-value">{formatAXM(block.reward)} AXM</div>
         </div>
       </div>
 
@@ -147,8 +147,8 @@ function BlockDetail() {
                       {shortenHash(tx.recipient)}
                     </Link>
                   </td>
-                  <td>{formatQBT(tx.amount)} QBT</td>
-                  <td>{formatQBT(tx.fee)} QBT</td>
+                  <td>{formatAXM(tx.amount)} AXM</td>
+                  <td>{formatAXM(tx.fee)} AXM</td>
                   <td>
                     {tx.zk_proof ? (
                       <span className="badge badge-success">ZK-SNARK</span>

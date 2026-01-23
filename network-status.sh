@@ -1,19 +1,19 @@
 #!/bin/bash
-# Qubit Protocol Network Status Checker
+# AXIOM Protocol Network Status Checker
 # Usage: ./network-status.sh
 
-echo "🌐 Qubit Protocol Network Status"
+echo "🌐 AXIOM Protocol Network Status"
 echo "================================="
 
 # Check if node is running
-if pgrep -f "qubit" > /dev/null; then
+if pgrep -f "axiom" > /dev/null; then
     echo "✅ Node Status: RUNNING"
     echo "📊 Process Info:"
-    ps aux | grep qubit | grep -v grep | head -1
+    ps aux | grep axiom | grep -v grep | head -1
     echo ""
 else
     echo "❌ Node Status: NOT RUNNING"
-    echo "💡 Start with: cargo run --bin qubit"
+    echo "💡 Start with: cargo run --bin axiom"
     exit 1
 fi
 
@@ -32,5 +32,5 @@ fi
 
 echo ""
 echo "📋 Recent Network Activity (last 10 lines):"
-echo "Note: Run 'cargo run --bin qubit' in another terminal to see live logs"
+echo "Note: Run 'cargo run --bin axiom' in another terminal to see live logs"
 echo "Look for lines containing '🔗 Peer connected', '🌐 Connected Peers', etc."

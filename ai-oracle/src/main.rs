@@ -245,7 +245,7 @@ struct ConsensusResult {
 async fn health() -> impl Responder {
     HttpResponse::Ok().json(serde_json::json!({
         "status": "healthy",
-        "service": "qubit-ai-oracle",
+        "service": "axiom-ai-oracle",
         "version": "1.0.0"
     }))
 }
@@ -259,7 +259,7 @@ async fn main() -> std::io::Result<()> {
     // Initialize with some demo providers
     initialize_demo_providers(state.clone());
     
-    println!("🌐 Qubit AI Oracle Network starting...");
+    println!("🌐 Axiom AI Oracle Network starting...");
     println!("🔗 API listening on http://0.0.0.0:8081");
     
     HttpServer::new(move || {
@@ -293,7 +293,7 @@ fn initialize_demo_providers(state: SharedState) {
             provider_id: "provider-openai-001".to_string(),
             endpoint: "https://api.openai.com/v1".to_string(),
             models: vec!["gpt-4".to_string(), "gpt-3.5-turbo".to_string()],
-            stake: 100_000_000_000, // 100 QBT
+            stake: 100_000_000_000, // 100 AXM
             reputation_score: 0.95,
             total_requests: 1523,
             successful_requests: 1501,
@@ -302,7 +302,7 @@ fn initialize_demo_providers(state: SharedState) {
             provider_id: "provider-anthropic-001".to_string(),
             endpoint: "https://api.anthropic.com/v1".to_string(),
             models: vec!["claude-3-opus".to_string(), "claude-3-sonnet".to_string()],
-            stake: 85_000_000_000, // 85 QBT
+            stake: 85_000_000_000, // 85 AXM
             reputation_score: 0.97,
             total_requests: 1124,
             successful_requests: 1103,
@@ -311,7 +311,7 @@ fn initialize_demo_providers(state: SharedState) {
             provider_id: "provider-llama-001".to_string(),
             endpoint: "https://api.together.xyz/v1".to_string(),
             models: vec!["llama-3-70b".to_string(), "llama-2-70b".to_string()],
-            stake: 65_000_000_000, // 65 QBT
+            stake: 65_000_000_000, // 65 AXM
             reputation_score: 0.92,
             total_requests: 892,
             successful_requests: 865,
@@ -320,7 +320,7 @@ fn initialize_demo_providers(state: SharedState) {
             provider_id: "provider-mistral-001".to_string(),
             endpoint: "https://api.mistral.ai/v1".to_string(),
             models: vec!["mistral-large".to_string(), "mistral-medium".to_string()],
-            stake: 50_000_000_000, // 50 QBT
+            stake: 50_000_000_000, // 50 AXM
             reputation_score: 0.90,
             total_requests: 645,
             successful_requests: 621,

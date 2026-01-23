@@ -1,6 +1,6 @@
-# Qubit Protocol Comparison with Established Projects
+# AXIOM Protocol Comparison with Established Projects
 
-| Feature                | Qubit Protocol | Bitcoin | Ethereum | Zcash |
+| Feature                | AXIOM Protocol | Bitcoin | Ethereum | Zcash |
 |------------------------|---------------|---------|----------|-------|
 | Whitepaper             | ❌            | ✅      | ✅       | ✅    |
 | Formal Spec            | ❌            | ✅      | ✅       | ✅    |
@@ -13,4 +13,4 @@
 | Academic Papers        | ❌            | ✅      | ✅       | ✅    |
 
 ---
-This table will be updated as Qubit Protocol evolves.
+This table will be updated as AXIOM Protocol evolves.

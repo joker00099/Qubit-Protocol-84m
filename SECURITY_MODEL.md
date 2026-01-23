@@ -1,4 +1,4 @@
-# Qubit Protocol Security Model (Draft)
+# AXIOM Protocol Security Model (Draft)
 
 ## Threats Considered
 - Double-spend attacks

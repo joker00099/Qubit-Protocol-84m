@@ -1,24 +1,24 @@
 #!/bin/bash
-# Qubit Protocol Network Diagnostics
+# AXIOM Protocol Network Diagnostics
 # Run this to troubleshoot network connectivity issues
 
-echo "🔍 Qubit Protocol Network Diagnostics"
+echo "🔍 AXIOM Protocol Network Diagnostics"
 echo "====================================="
 
 # Check if node is running
 echo "1. Node Status:"
-if pgrep -f "qubit" > /dev/null; then
+if pgrep -f "axiom" > /dev/null; then
     echo "   ✅ Node is running"
-    ps aux | grep qubit | grep -v grep | head -1
+    ps aux | grep axiom | grep -v grep | head -1
 else
     echo "   ❌ No node running"
-    echo "   💡 Start with: ./target/release/qubit"
+    echo "   💡 Start with: ./target/release/axiom"
 fi
 
 echo ""
 echo "2. Network Ports:"
-echo "   Checking Qubit ports (6000-6010)..."
-netstat -tlnp 2>/dev/null | grep -E ":600[0-9]|:6010" || echo "   ❌ No Qubit ports open"
+echo "   Checking Axiom ports (6000-6010)..."
+netstat -tlnp 2>/dev/null | grep -E ":600[0-9]|:6010" || echo "   ❌ No Axiom ports open"
 
 echo ""
 echo "3. mDNS Discovery (Port 5353):"
@@ -50,7 +50,7 @@ echo ""
 echo "7. Recommendations:"
 echo "   • Ensure firewall allows ports 6000-6010 TCP and 5353 UDP"
 echo "   • Try running multiple nodes locally to test peer discovery"
-echo "   • Check if you're on the same network as other Qubit nodes"
+echo "   • Check if you're on the same network as other Axiom nodes"
 echo "   • Verify internet connectivity for global peer discovery"
 
 echo ""

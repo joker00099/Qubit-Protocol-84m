@@ -6,8 +6,8 @@ use std::collections::HashSet;
 
 pub const TARGET_TIME: u64 = 3600; // 1 Hour Time-Lock
 pub const HALVING_INTERVAL: u64 = 2_100_000;
-pub const INITIAL_REWARD: u64 = 50_000_000_000; // 500 QBT (8 decimals)
-pub const MAX_SUPPLY: u64 = 84_000_000_000_000_000; // 84M QBT in smallest units
+pub const INITIAL_REWARD: u64 = 50_000_000_000; // 500 AXM (8 decimals)
+pub const MAX_SUPPLY: u64 = 84_000_000_000_000_000; // 84M AXM in smallest units
 pub const DECIMALS: u32 = 8;
 
 /// THE SOVEREIGN ANCHOR: Hardcoded from your 2026-01-11 solo mine.
@@ -155,8 +155,8 @@ impl Timechain {
         (mined, remaining, percent)
     }
 
-    /// Format amount to QBT with decimals
-    pub fn format_qbt(amount: u64) -> String {
+    /// Format amount to AXM with decimals
+    pub fn format_axm(amount: u64) -> String {
         let whole = amount / 10u64.pow(DECIMALS);
         let fractional = amount % 10u64.pow(DECIMALS);
         format!("{}.{:08}", whole, fractional)

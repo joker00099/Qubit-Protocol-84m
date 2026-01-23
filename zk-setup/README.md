@@ -1,10 +1,10 @@
-# Qubit Protocol ZK-SNARK Setup
+# AXIOM Protocol ZK-SNARK Setup
 
-This directory contains the trusted setup ceremony and key management infrastructure for the Qubit Protocol's ZK-SNARK privacy features.
+This directory contains the trusted setup ceremony and key management infrastructure for the AXIOM Protocol's ZK-SNARK privacy features.
 
 ## 🔐 Overview
 
-The Qubit Protocol uses ZK-SNARKs (Zero-Knowledge Succinct Non-Interactive Arguments of Knowledge) to provide cryptographic privacy for transactions while maintaining network consensus. This requires a trusted setup ceremony to generate the cryptographic parameters that secure the entire network.
+The AXIOM Protocol uses ZK-SNARKs (Zero-Knowledge Succinct Non-Interactive Arguments of Knowledge) to provide cryptographic privacy for transactions while maintaining network consensus. This requires a trusted setup ceremony to generate the cryptographic parameters that secure the entire network.
 
 ## 📋 Ceremony Process
 
@@ -65,8 +65,8 @@ Nodes automatically download required keys on first startup:
 ```
 
 Keys are stored in:
-- Linux/macOS: `~/.qubit/keys/`
-- Windows: `%APPDATA%\qubit\keys\`
+- Linux/macOS: `~/.axiom/keys/`
+- Windows: `%APPDATA%\axiom\keys\`
 
 ## 🔍 Verification
 
@@ -83,10 +83,10 @@ After each ceremony, a transcript is generated containing:
 
 ```bash
 # Verify proving key hash
-sha256sum ~/.qubit/keys/proving_key.bin
+sha256sum ~/.axiom/keys/proving_key.bin
 
 # Verify verification key
-cat ~/.qubit/keys/verification_key.json
+cat ~/.axiom/keys/verification_key.json
 ```
 
 ## 🛠️ Technical Details
@@ -95,7 +95,7 @@ cat ~/.qubit/keys/verification_key.json
 
 - **Scheme**: Groth16
 - **Curve**: BLS12-381
-- **Circuit**: QubitTransactionCircuit
+- **Circuit**: AxiomTransactionCircuit
 - **Constraints**: Balance verification, address derivation, amount validation
 
 ### Circuit Description

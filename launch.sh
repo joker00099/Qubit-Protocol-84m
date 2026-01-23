@@ -1,8 +1,8 @@
 #!/bin/bash
 
-# Qubit Core - Decentralized 84M Launch Script
+# Axiom Core - Decentralized 84M Launch Script
 echo "--------------------------------------------------"
-echo "🚀 INITIALIZING QUBIT CORE..."
+echo "🚀 INITIALIZING AXIOM CORE..."
 echo "--------------------------------------------------"
 
 # 1. Clean previous build artifacts
@@ -19,13 +19,13 @@ if [ $? -eq 0 ]; then
     echo "--------------------------------------------------"
     
     # 3. Execute the binary
-    # Prefer `qubit-core` binary but fall back to `qubit` if present
-    if [ -x ./target/release/qubit-core ]; then
-        exec ./target/release/qubit-core
-    elif [ -x ./target/release/qubit ]; then
-        exec ./target/release/qubit
+    # Prefer `axiom-core` binary but fall back to `axiom` if present
+    if [ -x ./target/release/axiom-core ]; then
+        exec ./target/release/axiom-core
+    elif [ -x ./target/release/axiom ]; then
+        exec ./target/release/axiom
     else
-        echo "❌ Built binary not found at ./target/release/qubit-core or ./target/release/qubit"
+        echo "❌ Built binary not found at ./target/release/axiom-core or ./target/release/axiom"
         exit 1
     fi
 else

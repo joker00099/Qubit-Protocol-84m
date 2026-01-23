@@ -1,3 +1,9 @@
+// Production modules
+pub mod error;
+pub mod config;
+pub mod mempool;
+
+// Core modules
 pub mod zk;
 // Re-export modules and wallet so they can be used by bin crates
 pub mod transaction;
@@ -17,3 +23,7 @@ pub mod network;
 pub mod neural_guardian; // NEW: AI-powered security with federated learning
 pub use main_helper::Wallet;
 pub use block::Block;
+
+// Re-export production types
+pub use error::{AxiomError, Result};
+pub use config::AxiomConfig;

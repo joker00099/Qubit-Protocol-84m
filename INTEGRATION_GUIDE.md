@@ -1,14 +1,14 @@
-# Qubit Protocol Integration Guide (Draft)
+# AXIOM Protocol Integration Guide (Draft)
 
 ## Overview
-This guide explains how to integrate external applications or services with Qubit Protocol. The project is experimental and APIs may change.
+This guide explains how to integrate external applications or services with AXIOM Protocol. The project is experimental and APIs may change.
 
 ## RPC/API
 - No formal RPC or API specification yet
 - Planned: Basic JSON-RPC for block, transaction, and state queries
 
 ## Example Usage
-- See qubit-app-demo.py for basic Python integration
+- See axiom-app-demo.py for basic Python integration
 - Use Rust modules for direct integration
 
 ## Planned Features

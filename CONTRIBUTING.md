@@ -1,4 +1,4 @@
-# Contributing to Qubit Protocol
+# Contributing to AXIOM Protocol
 
 Thank you for your interest in contributing! This project is experimental and welcomes educational, research, and improvement-focused contributions.
 

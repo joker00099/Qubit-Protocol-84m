@@ -1,4 +1,4 @@
-# Qubit Protocol Legal & Compliance (Draft)
+# AXIOM Protocol Legal & Compliance (Draft)
 
 ## License
 - MIT License (see LICENSE file)

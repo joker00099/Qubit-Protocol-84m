@@ -1,7 +1,7 @@
-# Qubit Protocol - Technical Specification
+# AXIOM Protocol - Technical Specification
 
 ## 1. Overview
-Qubit Protocol is a production-grade blockchain project focused on ZK-SNARK privacy, VDF-based consensus, and P2P networking in Rust. All core features are implemented and ready for deployment.
+AXIOM Protocol is a production-grade blockchain project focused on ZK-SNARK privacy, VDF-based consensus, and P2P networking in Rust. All core features are implemented and ready for deployment.
 
 ## 2. Architecture
 - **Language:** Rust

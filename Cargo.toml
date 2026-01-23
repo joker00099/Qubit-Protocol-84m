@@ -1,10 +1,10 @@
 [package]
-name = "qubit-core"
+name = "axiom-core"
 version = "1.0.0"
 edition = "2021"
 description = "Governance-free decentralized Timechain with VDF+PoW Hybrid Consensus"
 publish = false # Ensures identity remains private and code isn't leaked to registries
-default-run = "qubit"
+default-run = "axiom"
 
 [dependencies]
 once_cell = "1.19"
@@ -12,6 +12,9 @@ once_cell = "1.19"
 onnxruntime = "0.0.14"
 ndarray = "0.15"
 dirs = "5.0"
+# Web server for health/metrics endpoints
+actix-web = "4.4"
+actix-rt = "2.9"
 # Wesolowski VDF (Big Integer Support)
 rug = "1.20"
 # Networking (Hardened P2P)
@@ -45,6 +48,13 @@ ark-r1cs-std = { version = "0.5", default-features = false }
 
 # Storage
 sled = "0.34" # Embedded database for self-healing chain storage
+
+# Production dependencies
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+num_cpus = "1.16"
 chrono = "0.4"
 log = "0.4.29"
 
@@ -56,18 +66,21 @@ panic = "abort"          # Smaller binary and faster execution
 strip = "symbols"        # Minimizes binary size and obscures internals
 
 [[bin]]
-name = "qubit"
+name = "axiom"
 path = "src/main.rs"
 
 [[bin]]
-name = "qubit-wallet"
-path = "src/bin/qubit-wallet.rs"
+name = "axiom-wallet"
+path = "src/bin/axiom-wallet.rs"
 
 [[bin]]
-name = "qubit-supply"
-path = "src/bin/qubit-supply.rs"
+name = "axiom-supply"
+path = "src/bin/axiom-supply.rs"
 
 [[bin]]
-name = "qubit-keygen"
-path = "src/bin/qubit-keygen.rs"
+name = "axiom-keygen"
+path = "src/bin/axiom-keygen.rs"
 
+[[bin]]
+name = "axiom-healthcheck"
+path = "src/bin/axiom-healthcheck.rs"

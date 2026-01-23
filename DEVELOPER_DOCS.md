@@ -1,4 +1,4 @@
-# Qubit Protocol Developer Documentation (Draft)
+# AXIOM Protocol Developer Documentation (Draft)
 
 ## Getting Started
 - See README for project overview and status

@@ -1,6 +1,6 @@
-# Qubit Explorer Backend
+# Axiom Explorer Backend
 
-REST API backend for the Qubit block explorer built with Actix-Web.
+REST API backend for the Axiom block explorer built with Actix-Web.
 
 ## Features
 
@@ -149,9 +149,9 @@ Run tests:
 cargo test
 ```
 
-## Integration with Qubit Node
+## Integration with Axiom Node
 
-Currently uses mock data. To integrate with actual Qubit node:
+Currently uses mock data. To integrate with actual Axiom node:
 
 1. Replace `AppState` initialization with connection to actual node
 2. Update endpoints to query real blockchain data

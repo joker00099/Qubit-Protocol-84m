@@ -1,4 +1,4 @@
-use qubit_core::zk::circuit::ZkProofSystem;
+use axiom_core::zk::circuit::ZkProofSystem;
 use std::env;
 use std::time::Instant;
 
@@ -9,7 +9,7 @@ fn main() {
     } else {
         "zk_keys".to_string()
     };
-    println!("🔐 Qubit ZK-SNARK Key Generation");
+    println!("🔐 Axiom ZK-SNARK Key Generation");
     println!("================================\n");
     println!("⏳ Performing trusted setup...");
     let start = Instant::now();

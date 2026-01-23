@@ -1,4 +1,4 @@
-# Qubit Protocol Network Protocol (Draft)
+# AXIOM Protocol Network Protocol (Draft)
 
 ## Peer Discovery
 - mDNS for local network

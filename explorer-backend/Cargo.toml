@@ -1,5 +1,5 @@
 [package]
-name = "qubit-explorer-backend"
+name = "axiom-explorer-backend"
 version = "1.0.0"
 edition = "2021"
 

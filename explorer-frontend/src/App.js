@@ -14,12 +14,12 @@ function App() {
         <header className="header">
           <div className="header-content">
             <Link to="/" style={{ textDecoration: 'none' }}>
-              <div className="logo">⚛️ Qubit Explorer</div>
+              <div className="logo">⚛️ Axiom Explorer</div>
             </Link>
             <nav className="nav">
               <Link to="/">Dashboard</Link>
               <Link to="/blocks">Blocks</Link>
-              <a href="https://github.com/Ghost-84M/Qubit-Protocol-84m" target="_blank" rel="noopener noreferrer">
+              <a href="https://github.com/Ghost-84M/Axiom-Protocol-84m" target="_blank" rel="noopener noreferrer">
                 GitHub
               </a>
             </nav>

@@ -120,7 +120,7 @@ impl From<request_response::Event<ChainRequest, ChainResponse>> for TimechainBeh
 // Ensure this is PUB so main.rs can call it
 /// Default hardcoded real-world bootstrap peers
 const DEFAULT_BOOTSTRAP_PEERS: &[&str] = &[
-    // Replace these with real, public Qubit nodes as they become available
+    // Replace these with real, public Axiom nodes as they become available
     "/ip4/34.160.111.145/tcp/6000", // Example: Google Cloud VM
     "/ip4/51.15.23.200/tcp/6000",   // Example: Scaleway/OVH
     "/ip4/3.8.120.113/tcp/6000",    // Example: AWS EC2
@@ -149,10 +149,10 @@ pub async fn init_network_with_bootstrap(bootstrap_peers: Vec<String>) -> Result
                 )?,
                 mdns: mdns::tokio::Behaviour::new(mdns::Config::default(), key.public().to_peer_id())?,
                 kademlia: kad::Behaviour::new(key.public().to_peer_id(), kad::store::MemoryStore::new(key.public().to_peer_id())),
-                identify: identify::Behaviour::new(identify::Config::new("qubit/1.0.0".into(), key.public())),
+                identify: identify::Behaviour::new(identify::Config::new("axiom/1.0.0".into(), key.public())),
                 request_response: {
                     let cfg = request_response::Config::default();
-                    request_response::Behaviour::new(vec![("/qubit/chain-sync/1.0.0", ProtocolSupport::Full)], cfg)
+                    request_response::Behaviour::new(vec![("/axiom/chain-sync/1.0.0", ProtocolSupport::Full)], cfg)
                 },
             })
         })?

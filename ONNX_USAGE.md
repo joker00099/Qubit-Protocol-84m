@@ -1,6 +1,6 @@
 # ONNX Runtime Integration Guide
 
-This document describes how to use ONNX Runtime for AI inference in Qubit Protocol.
+This document describes how to use ONNX Runtime for AI inference in AXIOM Protocol.
 
 ## Overview
 - The AI attack detection module now uses ONNX Runtime instead of TensorFlow.

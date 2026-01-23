@@ -1,4 +1,4 @@
-use crate::zk::circuit::QubitTransactionCircuit;
+use crate::zk::circuit::AxiomTransactionCircuit;
 use std::io::Write;
 use ark_groth16::{Groth16, ProvingKey, VerifyingKey};
 use ark_bls12_381::{Bls12_381, Fr};
@@ -23,7 +23,7 @@ pub fn load_zk_keys() -> Result<(), Box<dyn std::error::Error>> {
 
     let key_dir = dirs::home_dir()
         .ok_or("Could not find home directory")?
-        .join(".qubit")
+        .join(".axiom")
         .join("keys");
 
     fs::create_dir_all(&key_dir)?;
@@ -134,7 +134,7 @@ pub fn generate_transaction_proof(
     std::io::stdout().flush().unwrap();
 
     // Create circuit instance
-    let circuit = QubitTransactionCircuit {
+    let circuit = AxiomTransactionCircuit {
         secret_key: Some(secret_fr),
         current_balance: Some(balance_fr),
         nonce: None,

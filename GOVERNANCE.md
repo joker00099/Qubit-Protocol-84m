@@ -1,4 +1,4 @@
-# Qubit Protocol Governance (Draft)
+# AXIOM Protocol Governance (Draft)
 
 ## Current Status
 - No formal governance mechanism

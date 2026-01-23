@@ -1,6 +1,6 @@
-//! Qubit Protocol Rust SDK
+//! AXIOM Protocol Rust SDK
 //!
-//! Provides a high-level interface for interacting with the Qubit blockchain:
+//! Provides a high-level interface for interacting with the Axiom blockchain:
 //! - Wallet management (key generation, signing)
 //! - Transaction creation and broadcasting
 //! - Block and transaction queries
@@ -17,7 +17,7 @@ use std::time::{SystemTime, UNIX_EPOCH};
 pub struct Transaction {
     pub sender: String,      // 64-char hex address (32 bytes)
     pub recipient: String,   // 64-char hex address
-    pub amount: u64,         // Amount in satoshis (1 QBT = 10^8 sats)
+    pub amount: u64,         // Amount in satoshis (1 AXM = 10^8 sats)
     pub fee: u64,            // Transaction fee
     pub nonce: u64,          // Sender nonce to prevent replay attacks
     pub timestamp: u64,      // Unix timestamp
@@ -173,14 +173,14 @@ impl Default for Wallet {
 }
 
 
-/// Client for interacting with Qubit node RPC API
+/// Client for interacting with Axiom node RPC API
 #[derive(Debug, Clone)]
-pub struct QubitClient {
+pub struct AxiomClient {
     node_url: String,
     client: reqwest::blocking::Client,
 }
 
-impl QubitClient {
+impl AxiomClient {
     /// Create new client
     pub fn new(node_url: &str) -> Self {
         Self {
@@ -365,13 +365,13 @@ impl QubitClient {
 }
 
 
-/// Convert QBT to satoshis (1 QBT = 10^8 sats)
-pub fn qbt_to_sats(qbt: f64) -> u64 {
-    (qbt * 100_000_000.0) as u64
+/// Convert AXM to satoshis (1 AXM = 10^8 sats)
+pub fn axm_to_sats(axm: f64) -> u64 {
+    (axm * 100_000_000.0) as u64
 }
 
-/// Convert satoshis to QBT
-pub fn sats_to_qbt(sats: u64) -> f64 {
+/// Convert satoshis to AXM
+pub fn sats_to_axm(sats: u64) -> f64 {
     sats as f64 / 100_000_000.0
 }
 
@@ -413,10 +413,10 @@ mod tests {
     }
 
     #[test]
-    fn test_qbt_conversion() {
-        assert_eq!(qbt_to_sats(1.0), 100_000_000);
-        assert_eq!(qbt_to_sats(0.5), 50_000_000);
-        assert_eq!(sats_to_qbt(100_000_000), 1.0);
-        assert_eq!(sats_to_qbt(50_000_000), 0.5);
+    fn test_axm_conversion() {
+        assert_eq!(axm_to_sats(1.0), 100_000_000);
+        assert_eq!(axm_to_sats(0.5), 50_000_000);
+        assert_eq!(sats_to_axm(100_000_000), 1.0);
+        assert_eq!(sats_to_axm(50_000_000), 0.5);
     }
 }

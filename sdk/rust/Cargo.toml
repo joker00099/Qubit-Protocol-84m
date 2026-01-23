@@ -1,9 +1,9 @@
 [package]
-name = "qubit-sdk"
+name = "axiom-sdk"
 version = "1.0.0"
 edition = "2021"
-authors = ["Qubit Protocol Team"]
-description = "Rust SDK for interacting with the Qubit blockchain"
+authors = ["AXIOM Protocol Team"]
+description = "Rust SDK for interacting with the Axiom blockchain"
 license = "MIT"
 
 [dependencies]

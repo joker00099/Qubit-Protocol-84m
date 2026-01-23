@@ -1,6 +1,6 @@
-# Qubit Explorer Frontend
+# Axiom Explorer Frontend
 
-React-based block explorer frontend for the Qubit blockchain.
+React-based block explorer frontend for the Axiom blockchain.
 
 ## Features
 

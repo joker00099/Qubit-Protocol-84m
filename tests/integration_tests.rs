@@ -1,19 +1,19 @@
 #[cfg(test)]
 mod tests {
-    use qubit_core::*;
-    use qubit_core::block::Block;
-    use qubit_core::chain::Timechain;
-    use qubit_core::genesis;
-    use qubit_core::main_helper::Wallet;
+    use axiom_core::*;
+    use axiom_core::block::Block;
+    use axiom_core::chain::Timechain;
+    use axiom_core::genesis;
+    use axiom_core::main_helper::Wallet;
 
     #[test]
     fn test_transaction_creation() {
         let wallet = wallet::Wallet::load_or_create();
         let to_address = [1u8; 32];
-        let amount = 100000000; // 1 QBT
-        let fee = 1000000; // 0.01 QBT
+        let amount = 100000000; // 1 AXM
+        let fee = 1000000; // 0.01 AXM
         let nonce = 0;
-        let balance = 200000000; // 2 QBT
+        let balance = 200000000; // 2 AXM
 
         let tx = wallet.create_transaction(to_address, amount, fee, nonce, balance).unwrap();
 
@@ -31,10 +31,10 @@ mod tests {
     fn test_transaction_validation() {
         let wallet = wallet::Wallet::load_or_create();
         let to_address = [1u8; 32];
-        let amount = 100000000; // 1 QBT
-        let fee = 1000000; // 0.01 QBT
+        let amount = 100000000; // 1 AXM
+        let fee = 1000000; // 0.01 AXM
         let nonce = 0;
-        let balance = 200000000; // 2 QBT
+        let balance = 200000000; // 2 AXM
 
         let tx = wallet.create_transaction(to_address, amount, fee, nonce, balance).unwrap();
 
@@ -91,11 +91,11 @@ mod tests {
     fn test_economics() {
         // Test initial reward
         let reward = economics::block_reward(0, 0);
-        assert_eq!(reward, 5_000_000_000); // 5 QBT
+        assert_eq!(reward, 5_000_000_000); // 5 AXM
 
         // Test halving
         let reward_after_halving = economics::block_reward(210000, 0);
-        assert_eq!(reward_after_halving, 2_500_000_000); // 2.5 QBT
+        assert_eq!(reward_after_halving, 2_500_000_000); // 2.5 AXM
     }
 
     #[test]

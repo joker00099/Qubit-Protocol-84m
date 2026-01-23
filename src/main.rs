@@ -2,8 +2,8 @@
 #![allow(dead_code)]
 
 
-use qubit_core::{block, transaction, chain, network, storage, main_helper, genesis, bridge, vdf, ai_engine, state, economics, wallet, zk};
-use qubit_core::zk::circuit;
+use axiom_core::{block, transaction, chain, network, storage, main_helper, genesis, bridge, vdf, ai_engine, state, economics, wallet, zk};
+use axiom_core::zk::circuit;
 
 use block::Block;
 use chain::Timechain;
@@ -67,7 +67,7 @@ fn calculate_chain_work(chain: &Timechain) -> u64 {
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
     println!("--------------------------------------------------");
-    println!("🏛️  QUBIT CORE | DECENTRALIZED 84M PROTOCOL");
+    println!("🏛️  AXIOM CORE | DECENTRALIZED 84M PROTOCOL");
     println!("🛡️  STATUS: AI-NEURAL PROTECTION ACTIVE");
     println!("--------------------------------------------------");
 
@@ -94,7 +94,7 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
 
     // 2. NETWORK SETUP
     // --- Network Setup with Dynamic Port Hunting and Bootstrap Peers ---
-    let bootstrap_peers: Vec<String> = std::env::var("QUBIT_BOOTSTRAP_PEERS")
+    let bootstrap_peers: Vec<String> = std::env::var("AXIOM_BOOTSTRAP_PEERS")
         .unwrap_or_default()
         .split(',')
         .filter(|s| !s.trim().is_empty())
@@ -114,6 +114,14 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
         match swarm.listen_on(addr.clone()) {
             Ok(_) => {
                 println!("🌐 Node successfully bound to port: {}", current_port);
+                // --- BEGIN DIAGNOSTICS ---
+                println!("🆔 PeerId: {}", swarm.local_peer_id());
+                println!("🔊 Listening on: {}", addr);
+                for laddr in libp2p::Swarm::listeners(&swarm) {
+                    println!("🔊 Swarm listening: {}", laddr);
+                }
+                println!("[DIAG] To connect another node, set AXIOM_BOOTSTRAP_PEER=\"{}@{}\"", swarm.local_peer_id(), addr);
+                // --- END DIAGNOSTICS ---
                 break;
             }
             Err(e) => {
@@ -261,18 +269,26 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                 },
                 SwarmEvent::NewListenAddr { address, .. } => {
                     println!("🌐 Node active on: {:?}", address);
+                    // Check if this is an external address
+                    if address.to_string().contains("/ip4/") && !address.to_string().contains("/ip4/127.0.0.1") && !address.to_string().contains("/ip4/0.0.0.0") {
+                        println!("🌍 External address detected! Other nodes can connect to: {}/p2p/{}", address, swarm.local_peer_id());
+                    }
                     // Announce our current chain to the local network to help new peers sync
                     if let Ok(encoded) = bincode::serialize(&tc.blocks) {
                         let _ = swarm.behaviour_mut().gossipsub.publish(chain_topic.clone(), encoded);
                     }
                 },
-                SwarmEvent::ConnectionEstablished { peer_id, .. } => {
+                SwarmEvent::ConnectionEstablished { peer_id, endpoint, .. } => {
                     connected_peers.insert(peer_id);
                     println!("🔗 Peer connected: {} | Total peers: {}", peer_id, connected_peers.len());
+                    println!("   └─ Direction: {:?} | Address: {:?}", endpoint.is_dialer(), endpoint.get_remote_address());
                 },
-                SwarmEvent::ConnectionClosed { peer_id, .. } => {
+                SwarmEvent::ConnectionClosed { peer_id, cause, .. } => {
                     connected_peers.remove(&peer_id);
                     println!("🔌 Peer disconnected: {} | Total peers: {}", peer_id, connected_peers.len());
+                    if let Some(err) = cause {
+                        println!("   └─ Cause: {:?}", err);
+                    }
                 },
 
                 // When mDNS discovers peers on the LAN, proactively request their chain
@@ -280,12 +296,12 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                     match ev {
                         libp2p::mdns::Event::Discovered(list) => {
                             for (peer_id, addr) in list {
-                                println!("🔎 mDNS discovered peer: {}", peer_id);
+                                println!("🔎 mDNS discovered peer: {} at {}", peer_id, addr);
                                 // Actually dial the discovered peer to establish connection
                                 if let Err(e) = swarm.dial(addr.clone()) {
-                                    println!("⚠️  Failed to dial peer {}: {:?}", peer_id, e);
+                                    println!("   └─ ⚠️  Failed to dial: {:?}", e);
                                 } else {
-                                    println!("📞 Dialing peer: {}", peer_id);
+                                    println!("   └─ 📞 Dialing...");
                                 }
                                 let _ = swarm.behaviour_mut().gossipsub.publish(req_topic.clone(), b"REQ_CHAIN".to_vec());
                             }
@@ -307,6 +323,20 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                         &peer_id,
                         network::ChainRequest { start_height: tc.blocks.len() as u64 },
                     );
+                },
+                SwarmEvent::IncomingConnection { connection_id, local_addr, send_back_addr } => {
+                    println!("📞 Incoming connection attempt from {}", send_back_addr);
+                    println!("   └─ Local addr: {} | Connection ID: {:?}", local_addr, connection_id);
+                },
+                SwarmEvent::OutgoingConnectionError { peer_id, error, .. } => {
+                    if let Some(peer) = peer_id {
+                        println!("⚠️  Outgoing connection to {} failed: {:?}", peer, error);
+                    } else {
+                        println!("⚠️  Outgoing connection failed: {:?}", error);
+                    }
+                },
+                SwarmEvent::IncomingConnectionError { send_back_addr, error, .. } => {
+                    println!("⚠️  Incoming connection from {} failed: {:?}", send_back_addr, error);
                 },
                 SwarmEvent::Behaviour(network::TimechainBehaviourEvent::RequestResponse(ev)) => {
                     match ev {
@@ -394,13 +424,30 @@ async fn main() -> Result<(), Box<dyn Error + Send + Sync>> {
                 let trend = if tc.difficulty > last_diff { "UP ⬆️" } else if tc.difficulty < last_diff { "DOWN ⬇️" } else { "STABLE ↔️" };
                 // Supply info
                 let (mined, remaining_supply, percent) = tc.supply_info();
-                let mined_qbt = Timechain::format_qbt(mined);
-                let remaining_qbt = Timechain::format_qbt(remaining_supply);
-                println!("\n--- 🏛️  QUBIT STATUS ---");
+                let mined_axm = Timechain::format_axm(mined);
+                let remaining_axm = Timechain::format_axm(remaining_supply);
+                println!("\n--- 🏛️  AXIOM STATUS ---");
                 println!("⛓️  Height: {} | Diff: {} | Trend: {}", tc.blocks.len(), tc.difficulty, trend);
                 println!("⏳ Time-Lock: {:02}m remaining | 🤖 AI Shield: ACTIVE", remaining/60);
-                println!("💰 Mined: {} QBT | Remaining: {} QBT | {:.2}% of max supply", mined_qbt, remaining_qbt, percent);
-                println!("🌐 Connected Peers: {} | Network: ACTIVE", connected_peers.len());
+                println!("💰 Mined: {} AXM | Remaining: {} AXM | {:.2}% of max supply", mined_axm, remaining_axm, percent);
+                
+                // --- ENHANCED NETWORK DIAGNOSTICS ---
+                println!("🌐 Network Status:");
+                println!("   ├─ PeerId: {}", swarm.local_peer_id());
+                println!("   ├─ Connected Peers: {}", connected_peers.len());
+                if connected_peers.is_empty() {
+                    println!("   │  └─ No peers connected (check firewall/NAT)");
+                } else {
+                    for (i, peer) in connected_peers.iter().enumerate() {
+                        let prefix = if i == connected_peers.len() - 1 { "   │  └─" } else { "   │  ├─" };
+                        println!("{} {}", prefix, peer);
+                    }
+                }
+                println!("   └─ Listen Addresses:");
+                for addr in libp2p::Swarm::listeners(&swarm) {
+                    println!("      └─ {}", addr);
+                }
+                
                 // --- AI Dashboard Output ---
                 let ai = ai_guardian.lock().unwrap();
                 ai.log_stats();

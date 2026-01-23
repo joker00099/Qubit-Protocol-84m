@@ -1,7 +1,7 @@
 """
-Qubit Protocol Python SDK
+AXIOM Protocol Python SDK
 
-Provides a high-level interface for interacting with the Qubit blockchain:
+Provides a high-level interface for interacting with the Axiom blockchain:
 - Wallet management (key generation, signing)
 - Transaction creation and broadcasting
 - Block and transaction queries
@@ -20,10 +20,10 @@ from dataclasses import dataclass, asdict
 
 @dataclass
 class Transaction:
-    """Qubit transaction structure"""
+    """Axiom transaction structure"""
     sender: str  # 64-char hex address (32 bytes)
     recipient: str  # 64-char hex address
-    amount: int  # Amount in satoshis (1 QBT = 10^8 sats)
+    amount: int  # Amount in satoshis (1 AXM = 10^8 sats)
     fee: int  # Transaction fee
     nonce: int  # Sender nonce to prevent replay attacks
     timestamp: int  # Unix timestamp
@@ -53,7 +53,7 @@ class Transaction:
 
 @dataclass
 class Block:
-    """Qubit block structure"""
+    """Axiom block structure"""
     index: int
     timestamp: int
     transactions: List[Dict]
@@ -71,7 +71,7 @@ class Block:
 
 
 class Wallet:
-    """Qubit wallet for key management and signing"""
+    """Axiom wallet for key management and signing"""
     
     def __init__(self, private_key: Optional[str] = None):
         """
@@ -145,15 +145,15 @@ class Wallet:
         return expected_sig == actual_sig
 
 
-class QubitClient:
-    """Client for interacting with Qubit node RPC API"""
+class AxiomClient:
+    """Client for interacting with Axiom node RPC API"""
     
     def __init__(self, node_url: str = "http://localhost:8332"):
         """
         Initialize client
         
         Args:
-            node_url: URL of Qubit node RPC endpoint
+            node_url: URL of Axiom node RPC endpoint
         """
         self.node_url = node_url.rstrip('/')
         self.session = requests.Session()
@@ -279,7 +279,7 @@ class QubitClient:
             wallet: Sender wallet
             recipient: Recipient address (64-char hex)
             amount: Amount in satoshis
-            fee: Transaction fee (default 1000 sats = 0.00001 QBT)
+            fee: Transaction fee (default 1000 sats = 0.00001 AXM)
             use_zk: Whether to generate ZK-SNARK proof for privacy
             
         Returns:
@@ -372,20 +372,20 @@ class QubitClient:
         return self.broadcast_transaction(tx)
 
 
-def qbt_to_sats(qbt: float) -> int:
-    """Convert QBT to satoshis (1 QBT = 10^8 sats)"""
-    return int(qbt * 100_000_000)
+def axm_to_sats(axm: float) -> int:
+    """Convert AXM to satoshis (1 AXM = 10^8 sats)"""
+    return int(axm * 100_000_000)
 
 
-def sats_to_qbt(sats: int) -> float:
-    """Convert satoshis to QBT"""
+def sats_to_axm(sats: int) -> float:
+    """Convert satoshis to AXM"""
     return sats / 100_000_000
 
 
 # Example usage
 if __name__ == "__main__":
     # Initialize client
-    client = QubitClient("http://localhost:8332")
+    client = AxiomClient("http://localhost:8332")
     
     # Create or load wallet
     wallet = Wallet()  # Generate new wallet
@@ -393,11 +393,11 @@ if __name__ == "__main__":
     
     # Check balance
     balance = client.get_balance(wallet.address)
-    print(f"Balance: {sats_to_qbt(balance)} QBT")
+    print(f"Balance: {sats_to_axm(balance)} AXM")
     
     # Send transaction
     recipient = "a" * 64  # Example recipient address
-    amount = qbt_to_sats(1.5)  # Send 1.5 QBT
+    amount = axm_to_sats(1.5)  # Send 1.5 AXM
     
     try:
         tx_hash = client.send(wallet, recipient, amount, use_zk=True)
@@ -408,4 +408,4 @@ if __name__ == "__main__":
     # Get chain info
     info = client.get_chain_info()
     print(f"Chain height: {info.get('height')}")
-    print(f"Total supply: {sats_to_qbt(info.get('total_supply', 0))} QBT")
+    print(f"Total supply: {sats_to_axm(info.get('total_supply', 0))} AXM")

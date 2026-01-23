@@ -25,7 +25,7 @@ function Dashboard() {
     }
   };
 
-  const formatQBT = (satoshis) => {
+  const formatAXM = (satoshis) => {
     return (satoshis / 100000000).toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 8
@@ -53,7 +53,7 @@ function Dashboard() {
         </div>
         <div className="stat-card">
           <div className="stat-label">Circulating Supply</div>
-          <div className="stat-value">{formatQBT(stats.circulating_supply)} QBT</div>
+          <div className="stat-value">{formatAXM(stats.circulating_supply)} AXM</div>
         </div>
         <div className="stat-card">
           <div className="stat-label">Network Difficulty</div>
@@ -108,7 +108,7 @@ function Dashboard() {
                   <span className="badge badge-info">{block.tx_count}</span>
                 </td>
                 <td className="hash-short">{shortenHash(block.miner)}</td>
-                <td>{formatQBT(block.reward)} QBT</td>
+                <td>{formatAXM(block.reward)} AXM</td>
               </tr>
             ))}
           </tbody>

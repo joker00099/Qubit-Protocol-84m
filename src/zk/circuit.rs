@@ -12,7 +12,7 @@ use std::path::Path;
 use ark_relations::r1cs::Variable;
 use ark_std::One;
 
-/// Qubit Transaction Circuit - Proves ownership and solvency without revealing private data
+/// Axiom Transaction Circuit - Proves ownership and solvency without revealing private data
 /// 
 /// This circuit proves:
 /// 1. Knowledge of secret key (ownership)
@@ -20,7 +20,7 @@ use ark_std::One;
 /// 3. Correct balance update (integrity)
 /// 4. All amounts are non-negative (range constraints)
 #[derive(Clone)]
-pub struct QubitTransactionCircuit {
+pub struct AxiomTransactionCircuit {
     pub secret_key: Option<Fr>,
     pub current_balance: Option<Fr>,
     pub nonce: Option<Fr>,
@@ -30,7 +30,7 @@ pub struct QubitTransactionCircuit {
     pub new_balance_commitment: Option<Fr>, // Commitment to balance after transaction
 }
 
-impl ConstraintSynthesizer<Fr> for QubitTransactionCircuit {
+impl ConstraintSynthesizer<Fr> for AxiomTransactionCircuit {
     fn generate_constraints(self, cs: ConstraintSystemRef<Fr>) -> Result<(), SynthesisError> {
         // Allocate private witnesses
         let secret_key_var = cs.new_witness_variable(|| {
@@ -149,7 +149,7 @@ impl ZkProofSystem {
     pub fn setup() -> Result<Self, String> {
     let mut rng = thread_rng();
     // Create dummy circuit for setup
-    let circuit = QubitTransactionCircuit {
+    let circuit = AxiomTransactionCircuit {
             secret_key: None,
             current_balance: None,
             nonce: None,
@@ -240,7 +240,7 @@ impl ZkProofSystem {
         let new_balance = current_balance - transfer_amount - fee;
         let new_balance_commitment = secret_key + new_balance;
         
-        let circuit = QubitTransactionCircuit {
+        let circuit = AxiomTransactionCircuit {
             secret_key: Some(secret_key),
             current_balance: Some(current_balance),
             nonce: Some(nonce),

@@ -24,7 +24,7 @@ function TransactionDetail() {
     }
   };
 
-  const formatQBT = (satoshis) => {
+  const formatAXM = (satoshis) => {
     return (satoshis / 100000000).toFixed(8);
   };
 
@@ -92,14 +92,14 @@ function TransactionDetail() {
         <div className="detail-label">Amount:</div>
         <div className="detail-value">
           <strong style={{ fontSize: '20px', color: '#667eea' }}>
-            {formatQBT(tx.amount)} QBT
+            {formatAXM(tx.amount)} AXM
           </strong>
         </div>
       </div>
 
       <div className="detail-row">
         <div className="detail-label">Fee:</div>
-        <div className="detail-value">{formatQBT(tx.fee)} QBT</div>
+        <div className="detail-value">{formatAXM(tx.fee)} AXM</div>
       </div>
 
       <div className="detail-row">

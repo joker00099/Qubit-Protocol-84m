@@ -2,7 +2,7 @@ use std::fs::File;
 use std::io::{Read, Write};
 use crate::block::Block;
 
-const DB_PATH: &str = "qubit_chain.dat";
+const DB_PATH: &str = "axiom_chain.dat";
 
 /// ATOMIC SAVE: Writes the entire chain to disk.
 /// Uses a temporary file strategy to ensure that a crash during saving

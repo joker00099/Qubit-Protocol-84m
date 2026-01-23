@@ -1,4 +1,4 @@
-# Qubit Protocol Operational & Deployment Procedures (Draft)
+# AXIOM Protocol Operational & Deployment Procedures (Draft)
 
 ## Node Operations
 - No monitoring dashboards (Grafana/Prometheus)

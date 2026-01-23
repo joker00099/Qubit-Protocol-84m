@@ -1,4 +1,4 @@
-# Qubit Protocol - Attack Patterns & Detection (Draft)
+# AXIOM Protocol - Attack Patterns & Detection (Draft)
 
 ## Patterns Considered
 - Double spend

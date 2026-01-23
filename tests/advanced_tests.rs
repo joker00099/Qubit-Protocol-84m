@@ -1,8 +1,8 @@
 // Advanced Integration Tests
-use qubit_core::block::Block;
-use qubit_core::state::State;
-use qubit_core::transaction::Transaction;
-use qubit_core::vdf;
+use axiom_core::block::Block;
+use axiom_core::state::State;
+use axiom_core::transaction::Transaction;
+use axiom_core::vdf;
 use rug::Integer;
 
 #[test]

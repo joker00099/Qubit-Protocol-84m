@@ -1,6 +1,6 @@
 use actix_web::{web, App, HttpServer, HttpResponse};
-use qubit_core::block::Block;
-use qubit_core::state::State;
+use axiom_core::block::Block;
+use axiom_core::state::State;
 use std::sync::Mutex;
 
 struct AppState {

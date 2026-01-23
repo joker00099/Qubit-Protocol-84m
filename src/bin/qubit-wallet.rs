@@ -5,11 +5,11 @@ fn main() {
     let args: Vec<String> = env::args().collect();
     
     if args.len() < 2 {
-        println!("Usage: qubit-wallet [export|show|send|balance]");
+        println!("Usage: axiom-wallet [export|show|send|balance]");
         println!("  export     - Show wallet address in hex format");
         println!("  show       - Show full wallet details");
         println!("  balance    - Show current balance");
-        println!("  send <to> <amount> <fee> - Send QBT to address");
+        println!("  send <to> <amount> <fee> - Send AXM to address");
         return;
     }
 
@@ -19,13 +19,13 @@ fn main() {
     let wallet_data = match fs::read("wallet.dat") {
         Ok(data) => data,
         Err(_) => {
-            eprintln!("❌ Error: wallet.dat not found. Run the qubit node first to generate a wallet.");
+            eprintln!("❌ Error: wallet.dat not found. Run the axiom node first to generate a wallet.");
             std::process::exit(1);
         }
     };
 
     // Deserialize wallet
-    let wallet: qubit_core::wallet::Wallet = match bincode::deserialize(&wallet_data) {
+    let wallet: axiom_core::wallet::Wallet = match bincode::deserialize(&wallet_data) {
         Ok(w) => w,
         Err(e) => {
             eprintln!("❌ Error deserializing wallet: {}", e);
@@ -38,7 +38,7 @@ fn main() {
             println!("{}", hex::encode(wallet.address));
         }
         "show" => {
-            println!("💳 Qubit Wallet Details");
+            println!("💳 Axiom Wallet Details");
             println!("=======================");
             println!("Address (hex): {}", hex::encode(wallet.address));
             println!("Address length: {} bytes", wallet.address.len());
@@ -46,15 +46,15 @@ fn main() {
         }
         "balance" => {
             // Load chain to get balance
-            let chain_data = match fs::read("qubit_chain.dat") {
+            let chain_data = match fs::read("axiom_chain.dat") {
                 Ok(data) => data,
                 Err(_) => {
-                    println!("No blockchain data found. Balance: 0 QBT");
+                    println!("No blockchain data found. Balance: 0 AXM");
                     return;
                 }
             };
 
-            let blocks: Vec<qubit_core::block::Block> = match bincode::deserialize(&chain_data) {
+            let blocks: Vec<axiom_core::block::Block> = match bincode::deserialize(&chain_data) {
                 Ok(blocks) => blocks,
                 Err(e) => {
                     eprintln!("❌ Error deserializing chain: {}", e);
@@ -83,24 +83,24 @@ fn main() {
                 }
             }
 
-            let qbt_balance = balance as f64 / 100_000_000.0;
-            println!("💰 Balance: {:.8} QBT", qbt_balance);
+            let axm_balance = balance as f64 / 100_000_000.0;
+            println!("💰 Balance: {:.8} AXM", axm_balance);
         }
         "send" => {
             if args.len() < 5 {
-                eprintln!("Usage: qubit-wallet send <to_address_hex> <amount_qbt> <fee_qbt>");
+                eprintln!("Usage: axiom-wallet send <to_address_hex> <amount_axm> <fee_axm>");
                 std::process::exit(1);
             }
 
             let to_hex = &args[2];
-            let amount_qbt: f64 = match args[3].parse() {
+            let amount_axm: f64 = match args[3].parse() {
                 Ok(a) => a,
                 Err(_) => {
                     eprintln!("❌ Invalid amount");
                     std::process::exit(1);
                 }
             };
-            let fee_qbt: f64 = match args[4].parse() {
+            let fee_axm: f64 = match args[4].parse() {
                 Ok(f) => f,
                 Err(_) => {
                     eprintln!("❌ Invalid fee");
@@ -109,8 +109,8 @@ fn main() {
             };
 
             // Convert to smallest units
-            let amount = (amount_qbt * 100_000_000.0) as u64;
-            let fee = (fee_qbt * 100_000_000.0) as u64;
+            let amount = (amount_axm * 100_000_000.0) as u64;
+            let fee = (fee_axm * 100_000_000.0) as u64;
 
             // Decode recipient address
             let to_address = match hex::decode(to_hex) {
@@ -144,11 +144,11 @@ fn main() {
                     match fs::write("pending_tx.dat", tx_data) {
                         Ok(_) => {
                             println!("✅ Transaction created and saved to pending_tx.dat");
-                            println!("📤 Run the qubit node to broadcast this transaction");
+                            println!("📤 Run the axiom node to broadcast this transaction");
                             println!("From: {}", hex::encode(tx.from));
                             println!("To: {}", hex::encode(tx.to));
-                            println!("Amount: {:.8} QBT", amount as f64 / 100_000_000.0);
-                            println!("Fee: {:.8} QBT", fee as f64 / 100_000_000.0);
+                            println!("Amount: {:.8} AXM", amount as f64 / 100_000_000.0);
+                            println!("Fee: {:.8} AXM", fee as f64 / 100_000_000.0);
                         }
                         Err(e) => {
                             eprintln!("❌ Error saving transaction: {}", e);

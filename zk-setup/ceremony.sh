@@ -1,15 +1,15 @@
 #!/bin/bash
-# Qubit Protocol ZK-SNARK Trusted Setup Ceremony
+# AXIOM Protocol ZK-SNARK Trusted Setup Ceremony
 # This script performs the trusted setup for generating proving and verification keys
 # WARNING: This generates cryptographic parameters that secure the entire network
 
 set -e
 
-echo "🔐 QUBIT PROTOCOL ZK-SNARK TRUSTED SETUP CEREMONY"
+echo "🔐 AXIOM PROTOCOL ZK-SNARK TRUSTED SETUP CEREMONY"
 echo "=================================================="
 echo ""
 echo "WARNING: This ceremony generates the cryptographic parameters that secure"
-echo "the entire Qubit Protocol network. The 'toxic waste' (trapdoor) generated"
+echo "the entire AXIOM Protocol network. The 'toxic waste' (trapdoor) generated"
 echo "during this process MUST be securely destroyed after completion."
 echo ""
 echo "Participants should verify the ceremony transcript hash after completion."
@@ -33,8 +33,8 @@ echo "🕒 Start Time: $CEREMONY_TIME"
 
 # Log ceremony start
 echo "CEREMONY START: $CEREMONY_ID at $CEREMONY_TIME" > "ceremony-logs/ceremony-$CEREMONY_ID.log"
-echo "Protocol: Qubit Transaction Circuit (Groth16/BLS12-381)" >> "ceremony-logs/ceremony-$CEREMONY_ID.log"
-echo "Circuit: QubitTransactionCircuit" >> "ceremony-logs/ceremony-$CEREMONY_ID.log"
+echo "Protocol: Axiom Transaction Circuit (Groth16/BLS12-381)" >> "ceremony-logs/ceremony-$CEREMONY_ID.log"
+echo "Circuit: AxiomTransactionCircuit" >> "ceremony-logs/ceremony-$CEREMONY_ID.log"
 echo "" >> "ceremony-logs/ceremony-$CEREMONY_ID.log"
 
 echo "🔧 Building trusted setup tool..."
@@ -80,7 +80,7 @@ echo "Verification Key Hash: $VERIFICATION_KEY_HASH" >> "ceremony-logs/ceremony-
 
 # Create ceremony transcript
 cat > "ceremony-logs/transcript-$CEREMONY_ID.txt" << EOF
-QUBIT PROTOCOL ZK-SNARK TRUSTED SETUP CEREMONY TRANSCRIPT
+AXIOM PROTOCOL ZK-SNARK TRUSTED SETUP CEREMONY TRANSCRIPT
 ==========================================================
 
 Ceremony ID: $CEREMONY_ID
@@ -90,7 +90,7 @@ End Time: $CEREMONY_END_TIME
 CIRCUIT INFORMATION:
 - Protocol: Groth16
 - Curve: BLS12-381
-- Circuit: QubitTransactionCircuit
+- Circuit: AxiomTransactionCircuit
 - Constraints: Balance verification, address derivation, amount validation
 
 KEY HASHES:

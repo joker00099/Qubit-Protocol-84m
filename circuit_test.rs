@@ -2,7 +2,7 @@ use ark_bls12_381::{Bls12_381, Fr};
 use ark_groth16::{Groth16, Proof, ProvingKey, VerifyingKey, create_random_proof, verify_proof, prepare_verifying_key};
 use ark_relations::r1cs::ConstraintSynthesizer;
 use rand::thread_rng;
-use crate::circuit::QubitTransactionCircuit;
+use crate::circuit::AxiomTransactionCircuit;
 
 #[test]
 fn test_groth16_proof() {
@@ -13,7 +13,7 @@ fn test_groth16_proof() {
     let transfer_amount = Fr::from(100u64);
     let fee = Fr::from(10u64);
 
-    let circuit = QubitTransactionCircuit {
+    let circuit = AxiomTransactionCircuit {
         secret_key: Some(secret_key),
         current_balance: Some(current_balance),
         public_address: Some(public_address),

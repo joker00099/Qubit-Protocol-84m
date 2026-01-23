@@ -72,7 +72,7 @@ pub fn genesis() -> Block {
 
     // FIXED: Using hex::encode to format the [u8; 32] as a string for printing
     GENESIS_PRINT.call_once(|| {
-        println!("\n--- QUBIT GENESIS ANCHOR ---");
+        println!("\n--- AXIOM GENESIS ANCHOR ---");
         println!("HASH: {}", hex::encode(gen_block.calculate_hash()));
         println!("----------------------------\n");
     });

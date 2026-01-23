@@ -1,4 +1,4 @@
-# Qubit Protocol Security Audit Checklist
+# AXIOM Protocol Security Audit Checklist
 
 ## 1. Cryptography
 - [x] ZK-SNARK circuits use Groth16 (arkworks)

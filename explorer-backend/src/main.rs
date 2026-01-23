@@ -107,7 +107,7 @@ impl AppState {
             vdf_output: None,
             vdf_proof: None,
             size: 285,
-            reward: 5000000000, // 50 QBT
+            reward: 5000000000, // 50 AXM
         };
 
         // Sample blocks
@@ -141,7 +141,7 @@ impl AppState {
                 vdf_output: Some(format!("{:064x}", i * 666)),
                 vdf_proof: Some(format!("{:064x}", i * 777)),
                 size: 1024 + (i as usize * 256),
-                reward: 5000000000, // 50 QBT
+                reward: 5000000000, // 50 AXM
             };
             blocks.push(block);
         }
@@ -179,8 +179,8 @@ async fn get_stats(data: web::Data<AppState>) -> impl Responder {
     let stats = NetworkStats {
         height,
         total_transactions: transactions.len() as u64,
-        total_supply: 84000000_00000000, // 84M QBT in satoshis
-        circulating_supply: height * 5000000000, // 50 QBT per block
+        total_supply: 84000000_00000000, // 84M AXM in satoshis
+        circulating_supply: height * 5000000000, // 50 AXM per block
         difficulty: blocks.last().map(|b| b.difficulty).unwrap_or(1000),
         hash_rate: 123456789.0, // Simulated
         peers: 42,
@@ -370,7 +370,7 @@ async fn search(
 async fn health() -> impl Responder {
     HttpResponse::Ok().json(serde_json::json!({
         "status": "ok",
-        "service": "qubit-explorer-backend",
+        "service": "axiom-explorer-backend",
         "version": "1.0.0"
     }))
 }
@@ -379,7 +379,7 @@ async fn health() -> impl Responder {
 async fn main() -> std::io::Result<()> {
     env_logger::init_from_env(env_logger::Env::new().default_filter_or("info"));
 
-    log::info!("Starting Qubit Explorer Backend...");
+    log::info!("Starting Axiom Explorer Backend...");
 
     let app_state = web::Data::new(AppState::new());
 

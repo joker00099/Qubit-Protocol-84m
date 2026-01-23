@@ -1,7 +1,7 @@
-# Qubit Protocol Technical Documentation
+# AXIOM Protocol Technical Documentation
 
 ## Overview
-Qubit Protocol is a decentralized blockchain platform featuring:
+AXIOM Protocol is a decentralized blockchain platform featuring:
 - Groth16 ZK-SNARK privacy for all transactions
 - Wesolowski VDF-based time consensus
 - Hybrid PoW mining and halving

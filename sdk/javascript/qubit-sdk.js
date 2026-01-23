@@ -1,7 +1,7 @@
 /**
- * Qubit Protocol JavaScript SDK
+ * AXIOM Protocol JavaScript SDK
  * 
- * Provides a high-level interface for interacting with the Qubit blockchain:
+ * Provides a high-level interface for interacting with the Axiom blockchain:
  * - Wallet management (key generation, signing)
  * - Transaction creation and broadcasting
  * - Block and transaction queries
@@ -173,12 +173,12 @@ class Wallet {
 
 
 /**
- * Client for interacting with Qubit node RPC API
+ * Client for interacting with Axiom node RPC API
  */
-class QubitClient {
+class AxiomClient {
     /**
      * Initialize client
-     * @param {string} nodeUrl - URL of Qubit node RPC endpoint
+     * @param {string} nodeUrl - URL of Axiom node RPC endpoint
      */
     constructor(nodeUrl = 'http://localhost:8332') {
         this.nodeUrl = nodeUrl.replace(/\/$/, '');
@@ -308,7 +308,7 @@ class QubitClient {
      * @param {Wallet} wallet - Sender wallet
      * @param {string} recipient - Recipient address (64-char hex)
      * @param {number} amount - Amount in satoshis
-     * @param {number} fee - Transaction fee (default 1000 sats = 0.00001 QBT)
+     * @param {number} fee - Transaction fee (default 1000 sats = 0.00001 AXM)
      * @param {boolean} useZk - Whether to generate ZK-SNARK proof for privacy
      * @returns {Transaction} Signed transaction ready to broadcast
      */
@@ -391,15 +391,15 @@ class QubitClient {
 
 
 /**
- * Convert QBT to satoshis (1 QBT = 10^8 sats)
+ * Convert AXM to satoshis (1 AXM = 10^8 sats)
  */
-function qbtToSats(qbt) {
-    return Math.floor(qbt * 100_000_000);
+function axmToSats(axm) {
+    return Math.floor(axm * 100_000_000);
 }
 
 
 /**
- * Convert satoshis to QBT
+ * Convert satoshis to AXM
  */
 function satsToQbt(sats) {
     return sats / 100_000_000;
@@ -411,8 +411,8 @@ module.exports = {
     Transaction,
     Block,
     Wallet,
-    QubitClient,
-    qbtToSats,
+    AxiomClient,
+    axmToSats,
     satsToQbt
 };
 
@@ -421,7 +421,7 @@ module.exports = {
 if (require.main === module) {
     (async () => {
         // Initialize client
-        const client = new QubitClient('http://localhost:8332');
+        const client = new AxiomClient('http://localhost:8332');
         
         // Create or load wallet
         const wallet = new Wallet();  // Generate new wallet
@@ -430,11 +430,11 @@ if (require.main === module) {
         try {
             // Check balance
             const balance = await client.getBalance(wallet.address);
-            console.log(`Balance: ${satsToQbt(balance)} QBT`);
+            console.log(`Balance: ${satsToQbt(balance)} AXM`);
             
             // Send transaction
             const recipient = 'a'.repeat(64);  // Example recipient address
-            const amount = qbtToSats(1.5);  // Send 1.5 QBT
+            const amount = axmToSats(1.5);  // Send 1.5 AXM
             
             const txHash = await client.send(wallet, recipient, amount, 1000, true);
             console.log(`Transaction sent: ${txHash}`);
@@ -442,7 +442,7 @@ if (require.main === module) {
             // Get chain info
             const info = await client.getChainInfo();
             console.log(`Chain height: ${info.height}`);
-            console.log(`Total supply: ${satsToQbt(info.total_supply || 0)} QBT`);
+            console.log(`Total supply: ${satsToQbt(info.total_supply || 0)} AXM`);
             
         } catch (error) {
             console.error(`Error: ${error.message}`);

@@ -4,13 +4,13 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="qubit-sdk",
+    name="axiom-sdk",
     version="1.0.0",
-    author="Qubit Protocol Team",
-    description="Python SDK for interacting with the Qubit blockchain",
+    author="AXIOM Protocol Team",
+    description="Python SDK for interacting with the Axiom blockchain",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/Ghost-84M/Qubit-Protocol-84m",
+    url="https://github.com/Ghost-84M/Axiom-Protocol-84m",
     packages=find_packages(),
     classifiers=[
         "Development Status :: 4 - Beta",

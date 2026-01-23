@@ -1,4 +1,4 @@
-# Qubit Protocol Whitepaper Outline (Draft)
+# AXIOM Protocol Whitepaper Outline (Draft)
 
 ## 1. Introduction
 - Motivation and goals

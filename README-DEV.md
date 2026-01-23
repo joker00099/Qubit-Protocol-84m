@@ -1,4 +1,4 @@
-# Qubit Protocol - Developer Quick Reference
+# AXIOM Protocol - Developer Quick Reference
 
 ## Key Docs
 - IMPLEMENTATION_STATUS.md: What works vs. placeholder

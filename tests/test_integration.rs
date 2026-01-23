@@ -1,6 +1,6 @@
-use qubit_core::block::Block;
-use qubit_core::state::State;
-use qubit_core::transaction::Transaction;
+use axiom_core::block::Block;
+use axiom_core::state::State;
+use axiom_core::transaction::Transaction;
 
 #[test]
 fn test_block_validation_and_state() {

@@ -5,10 +5,10 @@ use ark_serialize::CanonicalSerialize;
 use rand::thread_rng;
 use std::fs;
 use std::path::Path;
-use qubit_core::zk::circuit::QubitTransactionCircuit;
+use axiom_core::zk::circuit::AxiomTransactionCircuit;
 
 fn main() -> Result<(), Box<dyn std::error::Error>> {
-    println!("🔐 Starting Qubit Protocol ZK-SNARK Trusted Setup");
+    println!("🔐 Starting AXIOM Protocol ZK-SNARK Trusted Setup");
     println!("=================================================");
 
     // Create keys directory if it doesn't exist
@@ -20,7 +20,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
 
     // Create a dummy circuit instance for parameter generation
     // In a real trusted setup, this would be done with contributions from multiple parties
-    let circuit = QubitTransactionCircuit {
+    let circuit = AxiomTransactionCircuit {
         secret_key: Some(Fr::from(12345u64)), // Dummy values for setup
         current_balance: Some(Fr::from(1000000u64)),
         nonce: None,
@@ -67,7 +67,7 @@ fn main() -> Result<(), Box<dyn std::error::Error>> {
     let vk_json = serde_json::json!({
         "protocol": "groth16",
         "curve": "bls12-381",
-        "circuit": "QubitTransactionCircuit",
+        "circuit": "AxiomTransactionCircuit",
         "verification_key_hex": hex::encode(vk_bytes),
         "metadata": {
             "generated_at": chrono::Utc::now().to_rfc3339(),

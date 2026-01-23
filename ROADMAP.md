@@ -1,4 +1,4 @@
-# Qubit Protocol Roadmap
+# AXIOM Protocol Roadmap
 
 ## Tier 1 - Critical (Immediate)
 - Update README with honest status ✅

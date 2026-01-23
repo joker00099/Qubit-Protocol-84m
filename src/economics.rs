@@ -1,13 +1,13 @@
 /// ECONOMICS — CONSENSUS MONETARY POLICY
 /// Fixed total supply (forever)
 
-pub const MAX_SUPPLY: u64 = 84_000_000_000_000_000; // 84M QBT, 8 decimals
+pub const MAX_SUPPLY: u64 = 84_000_000_000_000_000; // 84M AXM, 8 decimals
 
-/// Initial block reward (50 QBT, 8 decimals)
+/// Initial block reward (50 AXM, 8 decimals)
 pub const INITIAL_REWARD: u64 = 5_000_000_000;
 
 /// Blocks per halving (Litecoin-like: 840,000 blocks)
-/// Math: 50 QBT × 840,000 blocks × 2 (geometric series) = 84,000,000 QBT ✓
+/// Math: 50 AXM × 840,000 blocks × 2 (geometric series) = 84,000,000 AXM ✓
 pub const HALVING_INTERVAL: u64 = 840_000;
 
 /// Calculate block reward based on height

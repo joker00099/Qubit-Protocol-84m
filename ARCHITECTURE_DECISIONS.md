@@ -1,4 +1,4 @@
-# Qubit Protocol Architecture Decision Records (ADR)
+# AXIOM Protocol Architecture Decision Records (ADR)
 
 ## ADR-001: Use Rust for Core Implementation
 - Chosen for safety, performance, and ecosystem

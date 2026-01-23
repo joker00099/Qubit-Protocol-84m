@@ -22,7 +22,7 @@ function BlocksList() {
     }
   };
 
-  const formatQBT = (satoshis) => {
+  const formatAXM = (satoshis) => {
     return (satoshis / 100000000).toFixed(2);
   };
 
@@ -66,7 +66,7 @@ function BlocksList() {
               </td>
               <td className="hash-short">{shortenHash(block.miner)}</td>
               <td>{(block.size / 1024).toFixed(2)} KB</td>
-              <td>{formatQBT(block.reward)} QBT</td>
+              <td>{formatAXM(block.reward)} AXM</td>
             </tr>
           ))}
         </tbody>

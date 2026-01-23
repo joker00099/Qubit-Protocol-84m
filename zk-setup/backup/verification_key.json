@@ -1,5 +1,5 @@
 {
-  "circuit": "QubitTransactionCircuit",
+  "circuit": "AxiomTransactionCircuit",
   "curve": "bls12-381",
   "metadata": {
     "ceremony_version": "1.0.0",

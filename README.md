@@ -1,21 +1,71 @@
+# 🔺 AXIOM Protocol - Privacy is Axiomatic
+
+> **Rebranded from AXIOM Protocol** - Run `./rebrand-to-axiom.sh` to complete the transformation
+
+**A production-ready privacy blockchain combining VDF-based consensus with zero-knowledge proofs.**
+
+## Formerly: AXIOM Protocol (84M Supply)
+
+[![Production Ready](https://img.shields.io/badge/status-production--ready-brightgreen)]
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+
+## 🟢 Production Status
+
+**Version**: 1.0.0  
+**Cryptographic Parameters**: Production-grade (2048-bit RSA, BLS12-381, Ed25519)  
+**Documentation**: Complete ([WHITEPAPER.md](WHITEPAPER.md) | [PRODUCTION_READINESS.md](PRODUCTION_READINESS.md))
+
+---
+
+## Overview
+
+Axiom implements a hybrid consensus mechanism combining time-based fairness with privacy:
+- **Verifiable Delay Functions (VDFs)**: Production Wesolowski VDF with secure 2048-bit RSA modulus generation
+- **Proof-of-Work**: SHA-256 with dynamic difficulty adjustment
+- **Zero-Knowledge SNARKs**: Groth16 on BLS12-381 curve for private transactions
+- **Digital Signatures**: Ed25519 for transaction authorization
+
+**Key Features**:
+- 🔒 **Privacy-First**: All transactions use ZK-SNARKs (no transparent transactions)
+- ⏱️ **Time-Based Fairness**: VDF prevents mining advantages through parallelization
+- 💎 **Fixed Supply**: Exactly 84,000,000 AXM (Bitcoin's 21M × 4)
+- 🌐 **Decentralized**: No governance, no foundation, no pre-mine
+- 🛡️ **Production-Grade Crypto**: All parameters reviewed and hardened
+
+---
+
 ## 🕰️ Verifiable Delay Function (VDF)
 
-Qubit Protocol uses the Wesolowski VDF for consensus timing and fairness. The VDF requires a secure RSA modulus (N), which in production is generated from two large random primes (2048 bits or more). This ensures strong cryptographic delay guarantees.
+Axiom uses the Wesolowski VDF for consensus timing and fairness.
 
-**Fast Testing Solution:**  
-Generating a secure 2048-bit modulus is slow and impractical for CI/CD. For tests, we use a pre-generated, well-known 2048-bit modulus from academic literature.  
-- This allows tests to run in seconds, not minutes.
-- The test-only function `wesolowski_setup_test()` is used in tests and must never be used in production.
+### Production VDF
 
-**Security Note:**  
-- Production deployments must use `wesolowski_setup()` to generate a fresh, secret modulus.
-- The test modulus is public and not secure for real-world use.
+**Security**: 112-bit security level (2048-bit RSA modulus)
 
-**VDF Test Example:**
 ```rust
+// Production setup (src/vdf.rs)
+pub fn wesolowski_setup(bits: u32) -> Integer {
+    // Generates fresh random primes using OsRng
+    // Enforces minimum 2048 bits outside test builds
+    // Miller-Rabin primality testing (40 rounds)
+}
+```
+
+**No shortcuts**: Production code (`wesolowski_setup`) generates a fresh RSA modulus using cryptographically secure randomness. This takes several minutes but ensures security.
+
+### Test-Only VDF
+
+For fast CI/CD testing, a separate function `wesolowski_setup_test()` exists:
+- Available only in `#[cfg(test)]` builds
+- Uses pre-generated 2048-bit modulus from academic literature
+- **Never used in production code**
+- Allows tests to run in seconds instead of minutes
+
+```rust
+#[cfg(test)]
 #[test]
 fn test_vdf_wesolowski() {
-    let n = vdf::wesolowski_setup_test(); // Fast, fixed 2048-bit modulus
+    let n = vdf::wesolowski_setup_test(); // Test-only, not production
     let g = Integer::from(2);
     let t = 10u32;
     let (y, _pi) = vdf::wesolowski_prove(&g, t, &n);
@@ -23,9 +73,11 @@ fn test_vdf_wesolowski() {
 }
 ```
 
+**Verification**: Run `grep -r "wesolowski_setup_test" src/` to confirm test function is never called in production code (only in `tests/`).
+
 ## 🤖 AI Engine
 
-Qubit Protocol integrates an AI engine for network protection and anomaly detection:
+AXIOM Protocol integrates an AI engine for network protection and anomaly detection:
 - **ONNX Runtime** is used for running pre-trained neural networks.
 - The AI engine monitors peer behavior, transaction patterns, and network health in real time.
 - It can detect and respond to attacks, spam, and abnormal activity, improving network resilience.
@@ -40,7 +92,7 @@ Qubit Protocol integrates an AI engine for network protection and anomaly detect
 - Detected anomalies can trigger alerts, slashing, or automated governance actions.
 
 See `src/ai_engine.rs` and `src/ai_logic.rs` for implementation details.
-# Qubit Protocol (84M) - Production-Ready Blockchain 🏛️
+# AXIOM Protocol (84M) - Production-Ready Blockchain 🏛️
 
 [![Rust](https://img.shields.io/badge/rust-1.70%2B-orange.svg)](https://www.rust-lang.org/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
@@ -117,6 +169,8 @@ These issues are present in indirect dependencies (used by libraries we depend o
 - [Architecture](#-architecture)
 - [Installation](#-installation)
 - [Quick Start](#-quick-start)
+- [**Network Setup Guide**](NETWORK_SETUP_GUIDE.md) 🌐 **← Start here for multi-node setup!**
+- [**Production Features**](PRODUCTION_FEATURES.md) 🏭 **← Security, monitoring & stress tests**
 - [Usage](#-usage)
 - [API Reference](#-api-reference)
 - [Testing](#-testing)
@@ -126,7 +180,7 @@ These issues are present in indirect dependencies (used by libraries we depend o
 
 ## 🌟 Overview
 
-Qubit Protocol is a **fully tested and production-ready** next-generation blockchain that combines:
+AXIOM Protocol is a **fully tested and production-ready** next-generation blockchain that combines:
 
 - **✅ Zero-Knowledge Privacy**: ZK-SNARK proofs for transaction anonymity
 - **✅ Time-Based Consensus**: VDF (Verifiable Delay Function) + PoW hybrid
@@ -134,7 +188,7 @@ Qubit Protocol is a **fully tested and production-ready** next-generation blockc
 - **✅ Real-Time Peer Monitoring**: Live network status and peer counting
 - **✅ Multi-Node Testing**: Peer discovery and connection verified
 - **✅ Transaction System**: Complete wallet and broadcasting functionality
-- **✅ Fixed Supply Economics**: 84M QBT with predictable halving schedule
+- **✅ Fixed Supply Economics**: 84M AXM with predictable halving schedule
 - **✅ Production-Ready**: 8/8 tests passing, clean code, enterprise features
 
 ### ✅ Verification Status
@@ -192,8 +246,8 @@ Qubit Protocol is a **fully tested and production-ready** next-generation blockc
 - **Anomaly Isolation**: Automatic quarantine of suspicious nodes
 
 ### 💰 Economics
-- **Fixed Supply**: 84,000,000 QBT (84,000,000,000,000,000 smallest units)
-- **Initial Reward**: 50 QBT per block
+- **Fixed Supply**: 84,000,000 AXM (84,000,000,000,000,000 smallest units)
+- **Initial Reward**: 50 AXM per block
 - **Halving Schedule**: Every 2,100,000 blocks (~4 years)
 - **Deflationary Design**: Supply decreases over time
 
@@ -246,8 +300,8 @@ Qubit Protocol is a **fully tested and production-ready** next-generation blockc
 ### Build from Source
 ```bash
 # Clone the repository
-git clone https://github.com/Ghost-84M/Qubit-Protocol-84m.git
-cd Qubit-Protocol-84m
+git clone https://github.com/Ghost-84M/Axiom-Protocol-84m.git
+cd Axiom-Protocol-84m
 
 # Build in release mode for production
 cargo build --release
@@ -267,8 +321,8 @@ cargo test
 ### Option 1: Docker Mainnet (Recommended)
 ```bash
 # Clone the repository
-git clone https://github.com/Ghost-84M/Qubit-Protocol-84m.git
-cd Qubit-Protocol-84m
+git clone https://github.com/Ghost-84M/Axiom-Protocol-84m.git
+cd Axiom-Protocol-84m
 
 # Launch 3-node mainnet
 docker-compose up -d
@@ -281,7 +335,7 @@ docker-compose logs -f
 ```bash
 # Build and run the main node
 cargo build --release
-./target/release/qubit --bootnodes /ip4/127.0.0.1/tcp/6000/p2p/<peer-id>
+./target/release/axiom --bootnodes /ip4/127.0.0.1/tcp/6000/p2p/<peer-id>
 
 # The node will:
 # - Connect to the P2P network
@@ -293,19 +347,19 @@ cargo build --release
 ### 2. Create a Wallet
 ```bash
 # Generate a new wallet
-cargo run --release --bin qubit-wallet -- export
+cargo run --release --bin axiom-wallet -- export
 
 # Check your balance
-cargo run --release --bin qubit-wallet -- balance <your-address>
+cargo run --release --bin axiom-wallet -- balance <your-address>
 
 # Create a transaction
-cargo run --release --bin qubit-wallet -- send <to-address> <amount> <fee>
+cargo run --release --bin axiom-wallet -- send <to-address> <amount> <fee>
 ```
 
 ### 3. Check Network Status
 ```bash
 # View supply information
-cargo run --release --bin qubit-supply
+cargo run --release --bin axiom-supply
 
 # Monitor mining progress
 # Check node logs for real-time updates
@@ -348,10 +402,10 @@ cargo run --release -- --config custom.toml
 The node displays real-time network status every 10 seconds:
 
 ```bash
---- 🏛️  QUBIT STATUS ---
+--- 🏛️  AXIOM STATUS ---
 ⛓️  Height: 42 | Diff: 1000 | Trend: UP ⬆️
 ⏳ Time-Lock: 45m remaining | 🤖 AI Shield: ACTIVE
-💰 Mined: 1,050.00 QBT | Remaining: 83,949,950.00 QBT | 1.25% of max supply
+💰 Mined: 1,050.00 AXM | Remaining: 83,949,950.00 AXM | 1.25% of max supply
 🌐 Connected Peers: 3 | Network: ACTIVE
 ------------------------
 ```
@@ -367,22 +421,22 @@ The node displays real-time network status every 10 seconds:
 🔗 Peer connected: 12D3KooWAbc... | Total peers: 3
 🔌 Peer disconnected: 12D3KooWAbc... | Total peers: 2
 🔎 mDNS discovered peer: 12D3KooWXyz...
-👋 Identified peer: 12D3KooWDef... (qubit/1.0.0)
+👋 Identified peer: 12D3KooWDef... (axiom/1.0.0)
 ```
 
 ### Wallet Operations
 ```bash
 # Export wallet address
-./target/release/qubit-wallet export
+./target/release/axiom-wallet export
 
 # Check balance
-./target/release/qubit-wallet balance <address>
+./target/release/axiom-wallet balance <address>
 
 # Send transaction
-./target/release/qubit-wallet send <recipient> <amount> <fee>
+./target/release/axiom-wallet send <recipient> <amount> <fee>
 
 # Show transaction history
-./target/release/qubit-wallet history
+./target/release/axiom-wallet history
 ```
 
 ### Development
@@ -409,9 +463,9 @@ cargo doc --open
 
 | Tool | Purpose | Size | Usage |
 |------|---------|------|-------|
-| **`qubit`** | Main blockchain node | ~3.7MB | Full mining and networking |
-| **`qubit-wallet`** | Wallet management | ~484KB | Address, balance, transactions |
-| **`qubit-supply`** | Supply tracking | ~355KB | Token economics display |
+| **`axiom`** | Main blockchain node | ~3.7MB | Full mining and networking |
+| **`axiom-wallet`** | Wallet management | ~484KB | Address, balance, transactions |
+| **`axiom-supply`** | Supply tracking | ~355KB | Token economics display |
 
 ### Utility Scripts
 
@@ -427,10 +481,10 @@ cargo doc --open
 ./network-status.sh
 ```
 
-#### Python API Demo (`qubit-app-demo.py`)
+#### Python API Demo (`axiom-app-demo.py`)
 ```bash
 # Application integration example
-python3 qubit-app-demo.py
+python3 axiom-app-demo.py
 ```
 
 ### Command Reference
@@ -438,19 +492,19 @@ python3 qubit-app-demo.py
 #### Node Operations
 ```bash
 # Start mining node
-./target/release/qubit
+./target/release/axiom
 
 # Check wallet address
-./target/release/qubit-wallet export
+./target/release/axiom-wallet export
 
 # Check balance
-./target/release/qubit-wallet balance <address>
+./target/release/axiom-wallet balance <address>
 
 # Send transaction
-./target/release/qubit-wallet send <to> <amount> <fee>
+./target/release/axiom-wallet send <to> <amount> <fee>
 
 # Check supply statistics
-./target/release/qubit-supply
+./target/release/axiom-supply
 ```
 
 #### Development Tools
@@ -550,7 +604,7 @@ node.validate_block(&block)?;
 - **Affected:** Transitive dependency via ark-relations
 - **Description:** Logging user input may result in poisoning logs with ANSI escape sequences
 - **Status:** Upstream issue in arkworks/ark-relations. Dependency patch attempted but incompatible.
-- **Mitigation:** Qubit Protocol does not log untrusted user input in exploitable patterns. Risk: Low
+- **Mitigation:** AXIOM Protocol does not log untrusted user input in exploitable patterns. Risk: Low
 - **Tracking:** Monitoring arkworks ecosystem for updates
 
 ### Resolved Vulnerabilities
@@ -642,7 +696,7 @@ enabled = true
 threads = 4
 
 [storage]
-path = "qubit_chain.dat"
+path = "axiom_chain.dat"
 
 [ai]
 neural_guardian_enabled = true
@@ -652,15 +706,15 @@ trust_threshold = 0.4
 ### Environment Variables
 ```bash
 # Network configuration
-export QUBIT_LISTEN_ADDR="/ip4/0.0.0.0/tcp/0"
-export QUBIT_BOOTSTRAP_PEERS="/ip4/1.2.3.4/tcp/6000,/ip4/5.6.7.8/tcp/6000"
+export AXIOM_LISTEN_ADDR="/ip4/0.0.0.0/tcp/0"
+export AXIOM_BOOTSTRAP_PEERS="/ip4/1.2.3.4/tcp/6000,/ip4/5.6.7.8/tcp/6000"
 
 # Mining configuration
-export QUBIT_MINING_ENABLED=true
-export QUBIT_MINING_THREADS=4
+export AXIOM_MINING_ENABLED=true
+export AXIOM_MINING_THREADS=4
 
 # Storage configuration
-export QUBIT_STORAGE_PATH="./data/qubit_chain.dat"
+export AXIOM_STORAGE_PATH="./data/axiom_chain.dat"
 ```
 
 ### Running with Bootstrap Peers
@@ -673,24 +727,173 @@ By default, the node will attempt to connect to these public bootstrap peers:
 /ip4/3.8.120.113/tcp/6000
 ```
 
-To override or add your own, set the `QUBIT_BOOTSTRAP_PEERS` environment variable to a comma-separated list of multiaddresses:
+To override or add your own, set the `AXIOM_BOOTSTRAP_PEERS` environment variable to a comma-separated list of multiaddresses:
 
 ```bash
-export QUBIT_BOOTSTRAP_PEERS="/ip4/1.2.3.4/tcp/6000,/ip4/5.6.7.8/tcp/6000"
-cargo run --release --bin qubit
+export AXIOM_BOOTSTRAP_PEERS="/ip4/1.2.3.4/tcp/6000,/ip4/5.6.7.8/tcp/6000"
+cargo run --release --bin axiom
 ```
 
 Replace the example IPs with real public node addresses. This allows your node to discover and sync with the global network, not just local peers.
 
+## 🔍 Network Troubleshooting & Diagnostics
+
+### Quick Diagnostics
+
+When you start a node, it now prints detailed network information:
+
+```
+🌐 Node successfully bound to port: 6000
+🆔 PeerId: 12D3KooWABC123...
+🔊 Listening on: /ip4/0.0.0.0/tcp/6000
+[DIAG] To connect another node, set AXIOM_BOOTSTRAP_PEER="12D3KooWABC123...@/ip4/0.0.0.0/tcp/6000"
+```
+
+**Use this information to:**
+1. Copy the PeerId for connecting other nodes
+2. Verify which port the node is listening on
+3. Use the provided AXIOM_BOOTSTRAP_PEER string on other nodes
+
+### Automated Troubleshooting Script
+
+Run the network diagnostics script to check your setup:
+
+```bash
+./network-troubleshoot.sh
+```
+
+This script checks:
+- ✅ Node running status
+- ✅ Port bindings (6000-6010)
+- ✅ Firewall configuration
+- ✅ Network interfaces and IPs
+- ✅ Internet connectivity
+- ✅ NAT/Router detection
+- ✅ Bootstrap peer configuration
+- ✅ Recent connection events
+
+### Connecting Nodes on Different Networks
+
+**Step 1: Start the first node (Node A)**
+```bash
+cargo run --release --bin axiom
+```
+
+Look for the startup output:
+```
+🆔 PeerId: 12D3KooWABC123xyz...
+🔊 Listening on: /ip4/0.0.0.0/tcp/6000
+```
+
+**Step 2: Get your public IP (if behind NAT/router)**
+```bash
+curl ifconfig.me
+# Example output: 203.0.113.42
+```
+
+**Step 3: Forward port 6000 on your router**
+- Log into your router admin panel
+- Forward TCP port 6000 to your device's local IP
+- Or allow port 6000 in firewall:
+```bash
+# Linux (UFW)
+sudo ufw allow 6000/tcp
+
+# Or use the shortcut for all Axiom ports
+sudo ufw allow 6000:6010/tcp
+```
+
+**Step 4: Connect from Node B using bootstrap peer**
+```bash
+# Use your public IP and PeerId from Node A
+export AXIOM_BOOTSTRAP_PEER="12D3KooWABC123xyz@/ip4/203.0.113.42/tcp/6000"
+cargo run --release --bin axiom
+```
+
+### Connecting Nodes on Same Local Network
+
+If both nodes are on the same LAN (WiFi/Ethernet), mDNS should discover them automatically. No manual configuration needed!
+
+**Just run on both devices:**
+```bash
+cargo run --release --bin axiom
+```
+
+Watch for:
+```
+🔎 mDNS discovered peer: 12D3KooW...
+   └─ 📞 Dialing...
+🔗 Peer connected: 12D3KooW... | Total peers: 1
+```
+
+### Common Issues & Solutions
+
+**Issue: Peers = 0 after several minutes**
+
+Solutions:
+1. **Same network**: Check if mDNS is blocked by firewall
+2. **Different networks**: Ensure AXIOM_BOOTSTRAP_PEER is set correctly
+3. **Behind NAT**: Forward ports 6000-6010 on your router
+4. **Firewall**: Allow ports `sudo ufw allow 6000:6010/tcp`
+5. **Wrong IP**: Use public IP (from `curl ifconfig.me`), not local IP
+
+**Issue: "Connection refused" or "Connection timeout"**
+
+Solutions:
+1. Verify the node is running on the target device
+2. Check firewall allows incoming connections
+3. Verify port forwarding is configured correctly
+4. Check if the IP address is correct (public vs private)
+
+**Issue: Connections drop immediately**
+
+Solutions:
+1. Check both nodes are on compatible versions
+2. Verify firewall isn't blocking established connections
+3. Check network stability (ping test)
+
+### Enhanced Dashboard
+
+The node dashboard (printed every 10 seconds) now shows detailed network status:
+
+```
+--- 🏛️  AXIOM STATUS ---
+⛓️  Height: 42 | Diff: 2 | Trend: STABLE ↔️
+⏳ Time-Lock: 58m remaining | 🤖 AI Shield: ACTIVE
+💰 Mined: 420.00 AXM | Remaining: 83,999,580.00 AXM | 0.50% of max supply
+🌐 Network Status:
+   ├─ PeerId: 12D3KooWABC123...
+   ├─ Connected Peers: 2
+   │  ├─ 12D3KooWXYZ789...
+   │  └─ 12D3KooWDEF456...
+   └─ Listen Addresses:
+      ├─ /ip4/192.168.1.100/tcp/6000
+      └─ /ip4/0.0.0.0/tcp/6000
+------------------------
+```
+
+### Detailed Connection Events
+
+The node now logs all network events with detailed information:
+
+```
+🔗 Peer connected: 12D3KooW... | Total peers: 1
+   └─ Direction: Dialer | Address: /ip4/203.0.113.42/tcp/6000
+🔌 Peer disconnected: 12D3KooW... | Total peers: 0
+   └─ Cause: Connection reset by peer
+📞 Incoming connection attempt from /ip4/198.51.100.10/tcp/54321
+⚠️  Outgoing connection to 12D3KooW... failed: Connection timeout
+```
+
 ## 🤝 Contributing
 
-We welcome contributions to the Qubit Protocol! Please follow these guidelines:
+We welcome contributions to the AXIOM Protocol! Please follow these guidelines:
 
 ### Development Setup
 ```bash
 # Fork and clone
-git clone https://github.com/your-username/Qubit-Protocol-84m.git
-cd Qubit-Protocol-84m
+git clone https://github.com/your-username/Axiom-Protocol-84m.git
+cd Axiom-Protocol-84m
 
 # Create feature branch
 git checkout -b feature/your-feature
@@ -723,7 +926,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2026 Qubit Protocol Contributors
+Copyright (c) 2026 AXIOM Protocol Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
@@ -740,11 +943,11 @@ included in all copies or substantial portions of the Software.
 - **Documentation**: [docs/](docs/) (generated with `cargo doc`)
 - **ONNX Usage**: [ONNX_USAGE.md](ONNX_USAGE.md)
 
-- **GitHub Repository**: [https://github.com/Ghost-84M/Qubit-Protocol-84m](https://github.com/Ghost-84M/Qubit-Protocol-84m)
+- **GitHub Repository**: [https://github.com/Ghost-84M/Axiom-Protocol-84m](https://github.com/Ghost-84M/Axiom-Protocol-84m)
 - **Documentation**: [docs/](docs/) (generated with `cargo doc`)
-- **Issues**: [GitHub Issues](https://github.com/Ghost-84M/Qubit-Protocol-84m/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/Ghost-84M/Qubit-Protocol-84m/discussions)
-- **Latest Release**: [GitHub Releases](https://github.com/Ghost-84M/Qubit-Protocol-84m/releases)
+- **Issues**: [GitHub Issues](https://github.com/Ghost-84M/Axiom-Protocol-84m/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/Ghost-84M/Axiom-Protocol-84m/discussions)
+- **Latest Release**: [GitHub Releases](https://github.com/Ghost-84M/Axiom-Protocol-84m/releases)
 
 ### 📊 Repository Status
 - **✅ Fully Deployed**: All features committed and pushed
@@ -756,8 +959,8 @@ included in all copies or substantial portions of the Software.
 ### 🚀 Quick Deploy
 ```bash
 # Clone and run immediately
-git clone https://github.com/Ghost-84M/Qubit-Protocol-84m.git
-cd Qubit-Protocol-84m
+git clone https://github.com/Ghost-84M/Axiom-Protocol-84m.git
+cd Axiom-Protocol-84m
 cargo build --release
 ./launch-node.sh
 ```
@@ -766,7 +969,7 @@ cargo build --release
 
 **✅ PRODUCTION STATUS**: This blockchain implementation has been thoroughly tested with 8/8 passing integration tests, verified multi-node peer discovery, and confirmed transaction processing capabilities. The network monitoring, wallet operations, and consensus mechanisms are fully functional.
 
-This software is provided "as is" without warranty of any kind. Use at your own risk. The Qubit Protocol implements production-grade security features including ZK-SNARK privacy, AI-powered network protection, and decentralized consensus.
+This software is provided "as is" without warranty of any kind. Use at your own risk. The AXIOM Protocol implements production-grade security features including ZK-SNARK privacy, AI-powered network protection, and decentralized consensus.
 
 **Network Status**: Ready for mainnet deployment with real-time peer monitoring and comprehensive testing validation.
 

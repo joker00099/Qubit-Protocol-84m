@@ -1,6 +1,6 @@
 # Security Policy
 
-Qubit Protocol is a decentralized, cryptography-driven system.
+AXIOM Protocol is a decentralized, cryptography-driven system.
 Security is a top priority, and responsible disclosure is strongly encouraged.
 
 ---
@@ -27,7 +27,7 @@ If you discover a security issue, **DO NOT** open a public GitHub issue.
 ### 📩 Report Privately
 Please report vulnerabilities responsibly by contacting:
 
-**Email:** `security@qubitprotocol.org`  
+**Email:** `security@axiomprotocol.org`  
 *(replace with your real email if different)*
 
 If email is unavailable, you may:
@@ -60,7 +60,7 @@ The following are considered **in scope**:
 The following are **out of scope**:
 - Denial of service via spam without protocol exploit
 - Social engineering attacks
-- Issues in third-party dependencies unless exploitable through Qubit
+- Issues in third-party dependencies unless exploitable through Axiom
 
 ---
 
@@ -83,7 +83,7 @@ The following are **out of scope**:
    - **Advisory:** RUSTSEC-2025-0055
    - **Description:** Logging user input may result in poisoning logs with ANSI escape sequences
    - **Status:** Upstream issue in arkworks/ark-relations. Patch attempted but blocked by dependency constraints.
-   - **Mitigation:** Qubit Protocol does not log untrusted user input in a way that would allow ANSI escape sequence injection. Risk assessed as low for current usage patterns.
+   - **Mitigation:** AXIOM Protocol does not log untrusted user input in a way that would allow ANSI escape sequence injection. Risk assessed as low for current usage patterns.
    - **Tracking:** Monitoring for upstream fix in arkworks ecosystem
 
 #### Resolved Vulnerabilities:
@@ -112,4 +112,4 @@ We appreciate and respect all responsible security researchers.
 
 ## ⚠️ Disclaimer
 
-Qubit Protocol is a running upcoming crypto project run and test for urself
+AXIOM Protocol is a running upcoming crypto project run and test for urself

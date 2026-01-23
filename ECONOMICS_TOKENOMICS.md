@@ -1,4 +1,4 @@
-# Qubit Protocol Economics & Tokenomics (Draft)
+# AXIOM Protocol Economics & Tokenomics (Draft)
 
 ## Total Supply
 - Fixed supply: 84,000,000 coins
@@ -7,7 +7,7 @@
 ## Block Rewards
 - Halving schedule: Formula implemented, rewards halve every 2,100,000 blocks
 - No priority fee mechanism (EIP-1559 style, planned)
-- Minimum fee enforced: 0.01 QBT (1,000,000 units)
+- Minimum fee enforced: 0.01 AXM (1,000,000 units)
 
 ## Transaction Fees
 - Dynamic fee market logic (fees can be adjusted based on network demand)

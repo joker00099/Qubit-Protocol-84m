@@ -10,7 +10,7 @@ use chrono;
 /// Uses once_cell::sync::Lazy to ensure only one global environment is created.
 static ONNX_ENV: Lazy<Environment> = Lazy::new(|| {
     Environment::builder()
-        .with_name("qubit-onnx-env")
+        .with_name("axiom-onnx-env")
         .with_log_level(LoggingLevel::Warning)
         .build()
         .expect("Failed to initialize ONNX environment")

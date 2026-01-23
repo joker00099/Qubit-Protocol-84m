@@ -1,6 +1,6 @@
-# Qubit AI Oracle Network
+# Axiom AI Oracle Network
 
-A decentralized oracle network for integrating AI/LLM services into the Qubit blockchain.
+A decentralized oracle network for integrating AI/LLM services into the Axiom blockchain.
 
 ## Overview
 
@@ -23,7 +23,7 @@ The AI Oracle Network allows smart contracts and users to query external AI mode
 - **Cryptographic Verification**: All responses are signed and hashed
 - **Reputation Scoring**: Tracks provider accuracy over time
 - **Model Flexibility**: Supports GPT-4, Claude, Llama, Mistral, and more
-- **Economic Security**: Providers stake QBT tokens to participate
+- **Economic Security**: Providers stake AXM tokens to participate
 
 ## API Reference
 
@@ -203,9 +203,9 @@ async fn query_oracle(query: &str, model: &str) -> Result<String, Box<dyn std::e
 
 ### Example
 
-- Provider A (100 QBT stake): "Yes"
-- Provider B (100 QBT stake): "Yes"  
-- Provider C (50 QBT stake): "No"
+- Provider A (100 AXM stake): "Yes"
+- Provider B (100 AXM stake): "Yes"  
+- Provider C (50 AXM stake): "No"
 
 Result: "Yes" with confidence 0.80 (200/250)
 
@@ -220,7 +220,7 @@ Result: "Yes" with confidence 0.80 (200/250)
 
 ### Stake Requirements
 
-- Minimum stake: 50 QBT
+- Minimum stake: 50 AXM
 - Higher stake = higher influence
 - Stake locked during active requests
 
@@ -260,14 +260,14 @@ Result: "Yes" with confidence 0.80 (200/250)
 
 ### Requirements
 
-- 50+ QBT for staking
+- 50+ AXM for staking
 - Reliable API access to AI models
 - Stable internet connection
 - Monitoring infrastructure
 
 ### Registration
 
-1. Stake QBT tokens on-chain
+1. Stake AXM tokens on-chain
 2. Register provider via API
 3. Configure endpoint and models
 4. Start responding to requests
@@ -334,14 +334,14 @@ cargo run
 
 ```bash
 cargo build --release
-./target/release/qubit-ai-oracle
+./target/release/axiom-ai-oracle
 ```
 
 ### Docker
 
 ```bash
-docker build -t qubit-ai-oracle .
-docker run -p 8081:8081 qubit-ai-oracle
+docker build -t axiom-ai-oracle .
+docker run -p 8081:8081 axiom-ai-oracle
 ```
 
 ## Testing
@@ -363,6 +363,6 @@ MIT
 
 ## Support
 
-- Documentation: https://docs.qubitprotocol.io/oracle
-- Discord: https://discord.gg/qubit
-- GitHub: https://github.com/qubit-protocol/ai-oracle
+- Documentation: https://docs.axiomprotocol.io/oracle
+- Discord: https://discord.gg/axiom
+- GitHub: https://github.com/axiom-protocol/ai-oracle

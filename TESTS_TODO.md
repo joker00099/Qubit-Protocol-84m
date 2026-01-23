@@ -1,4 +1,4 @@
-# Qubit Protocol - Testing TODOs
+# AXIOM Protocol - Testing TODOs
 
 ## Core Tests Needed
 - Double spend prevention

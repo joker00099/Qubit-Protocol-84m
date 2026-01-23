@@ -1,4 +1,4 @@
-# Bootstrap nodes for Qubit mainnet
+# Bootstrap nodes for Axiom mainnet
 # These are initial peers to connect to for network discovery
 # Format: /ip4/<ip>/tcp/<port>/p2p/<peer_id>
 

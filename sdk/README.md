@@ -1,6 +1,6 @@
-# Qubit Protocol SDKs
+# AXIOM Protocol SDKs
 
-Official SDKs for interacting with the Qubit blockchain in multiple programming languages.
+Official SDKs for interacting with the Axiom blockchain in multiple programming languages.
 
 ## Available SDKs
 
@@ -9,16 +9,16 @@ Located in `python/`
 
 **Installation:**
 ```bash
-pip install qubit-sdk
+pip install axiom-sdk
 ```
 
 **Quick Example:**
 ```python
-from qubit_sdk import QubitClient, Wallet, qbt_to_sats
+from axiom_sdk import AxiomClient, Wallet, axm_to_sats
 
-client = QubitClient("http://localhost:8332")
+client = AxiomClient("http://localhost:8332")
 wallet = Wallet()
-tx_hash = client.send(wallet, recipient, qbt_to_sats(1.5), use_zk=True)
+tx_hash = client.send(wallet, recipient, axm_to_sats(1.5), use_zk=True)
 ```
 
 **Documentation:** [python/README.md](python/README.md)
@@ -30,16 +30,16 @@ Located in `javascript/`
 
 **Installation:**
 ```bash
-npm install qubit-sdk
+npm install axiom-sdk
 ```
 
 **Quick Example:**
 ```javascript
-const { QubitClient, Wallet, qbtToSats } = require('qubit-sdk');
+const { AxiomClient, Wallet, axmToSats } = require('axiom-sdk');
 
-const client = new QubitClient('http://localhost:8332');
+const client = new AxiomClient('http://localhost:8332');
 const wallet = new Wallet();
-const txHash = await client.send(wallet, recipient, qbtToSats(1.5), 1000, true);
+const txHash = await client.send(wallet, recipient, axmToSats(1.5), 1000, true);
 ```
 
 **Documentation:** [javascript/README.md](javascript/README.md)
@@ -52,16 +52,16 @@ Located in `rust/`
 **Installation:**
 ```toml
 [dependencies]
-qubit-sdk = "1.0"
+axiom-sdk = "1.0"
 ```
 
 **Quick Example:**
 ```rust
-use qubit_sdk::{QubitClient, Wallet, qbt_to_sats};
+use axiom_sdk::{AxiomClient, Wallet, axm_to_sats};
 
-let client = QubitClient::new("http://localhost:8332");
+let client = AxiomClient::new("http://localhost:8332");
 let wallet = Wallet::new();
-let tx_hash = client.send(&wallet, recipient, qbt_to_sats(1.5), 1000, true)?;
+let tx_hash = client.send(&wallet, recipient, axm_to_sats(1.5), 1000, true)?;
 ```
 
 **Documentation:** [rust/README.md](rust/README.md)
@@ -97,7 +97,7 @@ All SDKs provide:
 
 ## RPC Endpoints
 
-All SDKs connect to a Qubit node via JSON-RPC. Default endpoint: `http://localhost:8332/rpc`
+All SDKs connect to a Axiom node via JSON-RPC. Default endpoint: `http://localhost:8332/rpc`
 
 ### Available RPC Methods
 
@@ -114,20 +114,20 @@ All SDKs connect to a Qubit node via JSON-RPC. Default endpoint: `http://localho
 
 ## Examples
 
-### Transfer QBT
+### Transfer AXM
 
 **Python:**
 ```python
-from qubit_sdk import QubitClient, Wallet, qbt_to_sats
+from axiom_sdk import AxiomClient, Wallet, axm_to_sats
 
-client = QubitClient("http://localhost:8332")
+client = AxiomClient("http://localhost:8332")
 wallet = Wallet("your_private_key_hex")
 
-# Send 10 QBT to recipient
+# Send 10 AXM to recipient
 tx_hash = client.send(
     wallet=wallet,
     recipient="recipient_address_64_char_hex",
-    amount=qbt_to_sats(10.0),
+    amount=axm_to_sats(10.0),
     fee=1000,
     use_zk=False
 )
@@ -136,16 +136,16 @@ print(f"Transaction sent: {tx_hash}")
 
 **JavaScript:**
 ```javascript
-const { QubitClient, Wallet, qbtToSats } = require('qubit-sdk');
+const { AxiomClient, Wallet, axmToSats } = require('axiom-sdk');
 
-const client = new QubitClient('http://localhost:8332');
+const client = new AxiomClient('http://localhost:8332');
 const wallet = new Wallet('your_private_key_hex');
 
-// Send 10 QBT to recipient
+// Send 10 AXM to recipient
 const txHash = await client.send(
     wallet,
     'recipient_address_64_char_hex',
-    qbtToSats(10.0),
+    axmToSats(10.0),
     1000,
     false
 );
@@ -154,16 +154,16 @@ console.log(`Transaction sent: ${txHash}`);
 
 **Rust:**
 ```rust
-use qubit_sdk::{QubitClient, Wallet, qbt_to_sats};
+use axiom_sdk::{AxiomClient, Wallet, axm_to_sats};
 
-let client = QubitClient::new("http://localhost:8332");
+let client = AxiomClient::new("http://localhost:8332");
 let wallet = Wallet::from_private_key("your_private_key_hex".to_string());
 
-// Send 10 QBT to recipient
+// Send 10 AXM to recipient
 let tx_hash = client.send(
     &wallet,
     "recipient_address_64_char_hex",
-    qbt_to_sats(10.0),
+    axm_to_sats(10.0),
     1000,
     false
 )?;
@@ -178,7 +178,7 @@ println!("Transaction sent: {}", tx_hash);
 tx_hash = client.send(
     wallet=wallet,
     recipient=recipient_address,
-    amount=qbt_to_sats(5.0),
+    amount=axm_to_sats(5.0),
     use_zk=True  # Enable privacy
 )
 ```
@@ -189,7 +189,7 @@ tx_hash = client.send(
 const txHash = await client.send(
     wallet,
     recipientAddress,
-    qbtToSats(5.0),
+    axmToSats(5.0),
     1000,
     true  // Enable privacy
 );
@@ -201,7 +201,7 @@ const txHash = await client.send(
 let tx_hash = client.send(
     &wallet,
     recipient_address,
-    qbt_to_sats(5.0),
+    axm_to_sats(5.0),
     1000,
     true  // Enable privacy
 )?;
@@ -222,7 +222,7 @@ print(f"Block #{block.index} with {len(block.transactions)} txs")
 
 # Get balance
 balance = client.get_balance(wallet.address)
-print(f"Balance: {balance / 100_000_000} QBT")
+print(f"Balance: {balance / 100_000_000} AXM")
 ```
 
 ## Development
@@ -262,9 +262,9 @@ cargo test
 
 ## Support
 
-- Documentation: [https://docs.qubit.network](https://docs.qubit.network)
-- GitHub Issues: [https://github.com/Ghost-84M/Qubit-Protocol-84m/issues](https://github.com/Ghost-84M/Qubit-Protocol-84m/issues)
-- Discord: [https://discord.gg/qubit](https://discord.gg/qubit)
+- Documentation: [https://docs.axiom.network](https://docs.axiom.network)
+- GitHub Issues: [https://github.com/Ghost-84M/Axiom-Protocol-84m/issues](https://github.com/Ghost-84M/Axiom-Protocol-84m/issues)
+- Discord: [https://discord.gg/axiom](https://discord.gg/axiom)
 
 ## License
 

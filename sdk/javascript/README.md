@@ -1,21 +1,21 @@
-# Qubit SDK for JavaScript
+# Axiom SDK for JavaScript
 
-JavaScript/Node.js SDK for interacting with the Qubit blockchain.
+JavaScript/Node.js SDK for interacting with the Axiom blockchain.
 
 ## Installation
 
 ```bash
-npm install qubit-sdk
+npm install axiom-sdk
 ```
 
 ## Quick Start
 
 ```javascript
-const { QubitClient, Wallet, qbtToSats, satsToQbt } = require('qubit-sdk');
+const { AxiomClient, Wallet, axmToSats, satsToQbt } = require('axiom-sdk');
 
 (async () => {
     // Initialize client
-    const client = new QubitClient('http://localhost:8332');
+    const client = new AxiomClient('http://localhost:8332');
     
     // Create wallet
     const wallet = new Wallet();  // Or load existing: new Wallet(privateKey)
@@ -23,11 +23,11 @@ const { QubitClient, Wallet, qbtToSats, satsToQbt } = require('qubit-sdk');
     
     // Check balance
     const balance = await client.getBalance(wallet.address);
-    console.log(`Balance: ${satsToQbt(balance)} QBT`);
+    console.log(`Balance: ${satsToQbt(balance)} AXM`);
     
     // Send transaction
     const recipient = 'recipient_address_here';
-    const amount = qbtToSats(1.5);  // Send 1.5 QBT
+    const amount = axmToSats(1.5);  // Send 1.5 AXM
     const txHash = await client.send(wallet, recipient, amount, 1000, true);
     console.log(`Transaction sent: ${txHash}`);
     
@@ -48,7 +48,7 @@ const { QubitClient, Wallet, qbtToSats, satsToQbt } = require('qubit-sdk');
 
 ## API Reference
 
-### QubitClient
+### AxiomClient
 
 - `getBalance(address)` - Get balance for an address
 - `getNonce(address)` - Get nonce for an address
