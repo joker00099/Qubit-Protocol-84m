@@ -94,6 +94,10 @@ name = "axiom-supply"
 path = "src/bin/axiom-supply.rs"
 
 [[bin]]
+name = "trusted-setup"
+path = "src/bin/trusted-setup.rs"
+
+[[bin]]
 name = "axiom-keygen"
 path = "src/bin/axiom-keygen.rs"
 
