@@ -106,3 +106,18 @@ ai_stats.json
 
 # Cleanup script (temporary)
 cleanup-repo.sh
+
+# Runtime generated files (do not commit)
+deployment-info.txt
+mainnet-status.json
+validator-*.json
+ai_stats.json
+*.log
+
+# Private keys (NEVER commit)
+keys/
+*.pem
+wallet.dat
+
+# Auto-generated configs
+demo-validator-*/
