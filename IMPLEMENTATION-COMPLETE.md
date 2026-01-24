@@ -66,7 +66,7 @@ All core features have been successfully implemented, tested, and deployed to ma
 
 **Deployment**:
 - 2,847 active miners at launch
-- 412 AXM distributed in 2026
+- 412 AXM distributed in 2025
 - Geographic distribution: Asia 43.7%, Europe 27.5%, Americas 28.8%
 
 **Test Results**: ✅ 3/3 passing
@@ -389,7 +389,7 @@ docker-compose up -d
 ## 🔗 Repository
 
 **GitHub**: https://github.com/Ghost-84M/Axiom-Protocol  
-**Mirror**: https://github.com/joker00099/Qubit-Protocol-84m  
+**Legacy Mirror**: https://github.com/joker00099/Qubit-Protocol-84m (archived)  
 
 ---
 

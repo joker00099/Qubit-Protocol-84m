@@ -5,6 +5,10 @@ use crate::wallet::Wallet;
 use sha2::{Sha256, Digest};
 use std::sync::Once;
 
+/// Genesis timestamp: January 20, 2025 00:00:00 UTC
+/// Unix timestamp: 1737331200
+pub const GENESIS_TIMESTAMP: u64 = 1737331200;
+
 /// The "Gatekeeper" function for the decentralized network.
 pub fn verify_zk_pass(miner_address: &[u8; 32], _parent: &[u8; 32], proof: &[u8]) -> bool {
     proof.len() == 128 && miner_address != &[0u8; 32]

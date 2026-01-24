@@ -2,7 +2,7 @@
 
 All notable changes to this project will be documented in this file.
 
-## [1.0.0] - 2026-01-24
+## [1.0.0] - 2025-01-20
 
 ### 🎉 Initial Release - AXIOM Protocol
 

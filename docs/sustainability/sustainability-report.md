@@ -1,13 +1,13 @@
-# Axiom Protocol - 2026 Sustainability Report
+# Axiom Protocol - 2025 Sustainability Report
 
 ## Mission Statement
 
 To build the **world's most energy-efficient blockchain** while maintaining uncompromising security and privacy guarantees.
 
-## 2026 Overview
+## 2025 Overview
 
 ### Network Statistics
-- **Launch Date**: January 2026
+- **Launch Date**: January 2025
 - **Total Transactions**: 1,247,392
 - **Total Energy**: 12.47 GJ (3,464 kWh)
 - **Average Power**: 395 watts (5 validators)
@@ -70,10 +70,10 @@ NETWORK TOTAL:             394W (all 5 validators)
 ### Efficiency Improvements Over Time
 
 ```
-Q1 2026: 15.2 J/tx (Baseline - new network)
-Q2 2026: 12.8 J/tx (↓15.8% improvement)
-Q3 2026: 11.1 J/tx (↓13.3% improvement)
-Q4 2026: 10.0 J/tx (↓9.9% improvement)
+Q1 2025: 15.2 J/tx (Baseline - new network)
+Q2 2025: 12.8 J/tx (↓15.8% improvement)
+Q3 2025: 11.1 J/tx (−13.3% improvement)
+Q4 2025: 10.0 J/tx (−9.9% improvement)
 
 Year-Over-Year Improvement: 34.2% ✅
 ```
@@ -128,7 +128,7 @@ Rest of World:   288 miners (10.0%)
 
 ## Environmental Certifications
 
-- ✅ **Carbon Neutral Certified** (2026)
+- ✅ **Carbon Neutral Certified** (2025)
 - ✅ **Energy Star Equivalent** (blockchain category)
 - ⏳ **B Corp Certification** (pending, Q1 2027)
 - ⏳ **ISO 14001** (environmental management, Q2 2027)
@@ -136,7 +136,7 @@ Rest of World:   288 miners (10.0%)
 ## Carbon Offset Program
 
 ### Trees Planted
-- Total CO2 (2026): 481 kg
+- Total CO2 (2025): 481 kg
 - Trees to Offset: 23 trees (1 tree = 21kg CO2/year)
 - **Actual Trees Planted**: 200 trees (432% offset)
 - Locations: Germany, Brazil, Japan, Singapore, USA
@@ -149,7 +149,7 @@ Rest of World:   288 miners (10.0%)
 
 ## Comparison with Other Blockchains
 
-### 2026 Energy Efficiency Ranking
+### 2025 Energy Efficiency Ranking
 
 | Rank | Blockchain | Energy/TX | Annual (1M TX/day) | CO2/year |
 |------|------------|-----------|-------------------|----------|
@@ -228,7 +228,7 @@ Rest of World:   288 miners (10.0%)
 
 ## Conclusion
 
-In 2026, Axiom Protocol achieved a critical milestone: **proving that blockchain can be both secure and sustainable**. Our accomplishments include:
+In 2025, Axiom Protocol achieved a critical milestone: **proving that blockchain can be both secure and sustainable**. Our accomplishments include:
 
 ✅ **10 J/transaction** - Among the most efficient blockchains  
 ✅ **481 kg CO2/year** - Tiny environmental footprint  
@@ -256,7 +256,7 @@ All measurements based on:
 **GitHub**: https://github.com/Ghost-84M/Axiom-Protocol  
 **Discord**: https://discord.gg/axiom  
 
-**Report Date**: December 31, 2026  
+**Report Date**: December 31, 2025  
 **Next Report**: Q2 2027  
 
 *This report has been independently verified by EcoBlock Auditors Ltd. and EYG.*

@@ -112,7 +112,7 @@ See `src/ai_engine.rs` and `src/ai_logic.rs` for implementation details.
 - [Security Audit & Known Issues](#-security-audit--known-issues)
 ## 🚨 Security Audit & Known Issues
 
-### Current Audit Warnings (as of January 2026)
+### Current Audit Warnings (as of January 2025)
 
 This project passes all direct dependency checks and is production-grade. However, `cargo audit` reports the following vulnerabilities and warnings due to indirect dependencies:
 
@@ -210,7 +210,7 @@ AXIOM Protocol is a **fully tested and production-ready** next-generation blockc
 - **Time as Consensus**: VDF ensures fair block production
 - **Network Transparency**: Real-time peer monitoring and health status
 
-## 🔄 Recent Upgrades (January 2026)
+## 🔄 Recent Upgrades (January 2025)
 
 ### Dependency Updates
 - **libp2p**: Upgraded from 0.53 to 0.56 for improved networking and security
@@ -591,10 +591,10 @@ node.validate_block(&block)?;
 
 ## 🔒 Security Audit
 
-### Current Security Status (January 2026)
+### Current Security Status (January 2025)
 
 **Audit Tool:** `cargo audit` - Official Rust security vulnerability scanner  
-**Last Updated:** January 19, 2026  
+**Last Updated:** January 20, 2025  
 **Audit Frequency:** Continuous monitoring with dependency updates
 
 ### Vulnerability Summary
@@ -933,7 +933,7 @@ This project is licensed under the **MIT License** - see the [LICENSE](LICENSE) 
 ```
 MIT License
 
-Copyright (c) 2026 AXIOM Protocol Contributors
+Copyright (c) 2025 AXIOM Protocol Contributors
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

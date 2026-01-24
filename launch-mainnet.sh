@@ -214,7 +214,7 @@ EOF
         docker-compose up -d
         cd ..
         echo -e "${GREEN}✓ Monitoring stack started${NC}"
-        echo "  Grafana: http://localhost:3000 (admin/axiom_admin_2026)"
+        echo "  Grafana: http://localhost:3000 (admin/axiom_admin_2025)"
         echo "  Prometheus: http://localhost:9090"
     fi
 else

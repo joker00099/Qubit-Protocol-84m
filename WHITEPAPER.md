@@ -2,7 +2,7 @@
 
 ## Technical Whitepaper v2.0
 
-**Date**: January 23, 2026  
+**Date**: January 20, 2025  
 **Authors**: AXIOM Protocol Development Team  
 **Contact**: https://github.com/Ghost-84M/Axiom-Protocol  
 **Website**: https://axiom.network
@@ -891,28 +891,28 @@ Bridge contracts undergo Certora formal verification:
 
 ## 12. Roadmap
 
-### Phase 1: Foundation (Q1 2026) ✅
+### Phase 1: Foundation (Q1 2025) ✅
 - [x] Mainnet launch
 - [x] Privacy module deployment
 - [x] Energy monitoring integration
 - [x] Basic wallet (CLI)
 - [x] Block explorer
 
-### Phase 2: Developer Tools (Q2 2026)
+### Phase 2: Developer Tools (Q2 2025)
 - [ ] SDK publication to crates.io
 - [ ] JavaScript/TypeScript SDK
 - [ ] Python SDK
 - [ ] REST API documentation
 - [ ] GraphQL endpoint
 
-### Phase 3: Bridges (Q3 2026)
+### Phase 3: Bridges (Q3 2025)
 - [ ] Ethereum bridge (wAXM ERC-20)
 - [ ] BSC bridge deployment
 - [ ] Polygon bridge deployment
 - [ ] Formal verification (Certora)
 - [ ] $10M bridge TVL target
 
-### Phase 4: Institutional Features (Q4 2026)
+### Phase 4: Institutional Features (Q4 2025)
 - [ ] Hardware wallet support (Ledger, Trezor)
 - [ ] Custody solutions (Fireblocks integration)
 - [ ] Compliance dashboard
@@ -1034,7 +1034,7 @@ The future of finance is private, compliant, and sustainable. The future is AXIO
 ---
 
 **Document Version**: 2.0  
-**Last Updated**: January 23, 2026  
+**Last Updated**: January 20, 2025  
 **License**: CC BY-SA 4.0  
 **Contact**: dev@axiom.network
 

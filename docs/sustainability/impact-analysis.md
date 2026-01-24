@@ -152,7 +152,7 @@ Energy calculations based on:
 
 ## Future Roadmap
 
-### 2026 Targets
+### 2025 Targets
 - ✅ Deploy 5 validators
 - ✅ Launch mobile mining
 - ✅ Achieve <15 J/tx
@@ -189,7 +189,7 @@ The future of finance is private, compliant, and sustainable. The future is Axio
 - US EPA (transportation emissions)
 - Academic peer-reviewed research
 
-**Last Updated:** January 23, 2026  
+**Last Updated:** January 20, 2025  
 **Report Version:** 2.0  
 **Certification:** Carbon Neutral Verified
 

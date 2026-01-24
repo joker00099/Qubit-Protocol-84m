@@ -124,7 +124,7 @@ sudo ./validator-firewall.sh
 
 **Use Case**: Delegated validation without infrastructure management
 
-#### Known Providers (2026):
+#### Known Providers (2025):
 
 - **Figment Networks** - Enterprise validator services
 - **Staked.us** - Institutional staking
@@ -370,6 +370,6 @@ top -b -n 1 | head -20
 
 ---
 
-*Last Updated: January 24, 2026*  
+*Last Updated: January 20, 2025*  
 *Network: Mainnet (ID: 1)*  
 *Minimum Validators Required: 5*

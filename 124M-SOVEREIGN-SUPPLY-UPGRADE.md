@@ -1,6 +1,6 @@
 # 🔺 AXIOM 124M: Sovereign Supply Upgrade Complete
 
-**Date:** January 23, 2026  
+**Date:** January 20, 2025  
 **Version:** 2.1.0  
 **Commit:** ddca0be
 
