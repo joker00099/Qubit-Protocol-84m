@@ -11,7 +11,7 @@ pub const MAX_SUPPLY: u64 = 124_000_000_000_000_000; // 124M AXM in smallest uni
 pub const DECIMALS: u32 = 8;
 
 /// THE SOVEREIGN ANCHOR: Hardcoded from your 2026-01-11 solo mine.
-pub const GENESIS_ANCHOR: &str = "2dfba633817046c7f559ed4b93076048435f7e1a90f14eb8035c04b9ebae2537";
+pub const GENESIS_ANCHOR: &str = "8f22d002a1c6572f028c9b6256e4f78afd015f918455db0a150ba0c11a2edaff";
 
 pub struct Timechain {
     pub blocks: Vec<Block>,
